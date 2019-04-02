@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+		<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean class="com.cnema.util.FileSaver" id="fileSaver"></bean>
+	<bean class="com.cnema.util.EmailDAO" id="emailDAO"> </bean>
+	<bean class="com.cnema.util.TimeChange" id="timeChange"></bean>
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="maxUploadSize" value="10485760"></property>
+	</bean>	
+		
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+		<property name="dataSource" ref="dataSource"></property>	
+	</bean>
+	<context:component-scan base-package="com.cnema.member" />
+	<context:component-scan base-package="com.cnema.movie" />
+	<context:component-scan base-package="com.cnema.reserve" />
+	<context:component-scan base-package="com.cnema.theater"/>
+	<context:component-scan base-package="com.cnema.coupon"/>
+	<context:component-scan base-package="com.cnema.community"/>
+	<context:component-scan base-package="com.cnema.message"/>
+	<context:component-scan base-package="com.cnema.myCoupon"/>
+	
+	<!-- 게시판 -->
+	<context:component-scan base-package="com.cnema.notice"/>
+	<context:component-scan base-package="com.cnema.qna"/>
+	<context:component-scan base-package="com.cnema.event"/>
+	<context:component-scan base-package="com.cnema.file"/>
+	<context:component-scan base-package="com.cnema.board"/>
+
+	
+
+
+</beans>

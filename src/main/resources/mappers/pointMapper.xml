@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pointMapper">
+	<insert id="getPoint" parameterType="pointDTO">
+		insert into point (point_num,id,contents,point_price,use_day,type) values(movie_seq.nextval,#{id},#{contents},#{point_price},sysdate,20)
+	</insert>
+
+	<insert id="usePoint" parameterType="pointDTO">
+		insert into point (point_num,id,contents,point_price,use_day,type) values(movie_seq.nextval,#{id},#{contents},#{point_price},sysdate,10)
+	</insert>
+
+
+
+
+	<!-- 희성 -->
+	<select id="pointList" resultType="pointDTO" parameterType="java.util.Map">
+		select * from (
+		select rownum R, N.* from  		
+		(select * from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2}) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+		<!-- select * from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2} -->
+	</select>
+	<!-- 희성 -->
+	<select id="pTotalCount" resultType="int" parameterType="java.util.Map">
+		select count(point_num) from point where id=#{id} and to_date(use_day, 'YY-MM-DD') <![CDATA[>=]]> #{datepicker1} and to_date(use_day, 'YY-MM-DD') <![CDATA[<=]]> #{datepicker2}
+	</select>
+	<!-- 희성 -->
+	<select id="pointAList" resultType="pointDTO" parameterType="java.util.Map">
+		select * from point where id=#{id}
+	</select>
+	
+	<!-- 희성 -->
+	<insert id="pointInsert" parameterType="map">
+		insert into point (point_num,id,contents,point_price,use_day,type) values(movie_seq.nextval,#{id},0,#{price},sysdate,20)
+	</insert>
+	
+	<!-- heeseong -->
+	<delete id="withdrawal" parameterType="string">
+	  delete from point where id=#{id}
+	</delete>
+	
+  </mapper>

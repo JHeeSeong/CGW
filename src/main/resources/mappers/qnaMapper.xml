@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="qnaMapper">
+  
+  <!-- <resultMap type="QnaDTO" id="qnaResult">
+  	<id property="num" column="num"/>
+  	<collection property="fileNames" column="num" ofType="FileDTO" select="selectFile"></collection>
+  </resultMap>
+   -->
+  
+  
+  
+  <sql id="kind">
+  	like '%'||#{search}||'%'
+  </sql>
+  
+  
+  <select id="selectOne" parameterType="int" resultType="QnaDTO">
+  	select num, area, location, type, title, writer, contents, reg_date, filename, oriname,
+  	reply, reply_id, reply_date from qna where num=#{num}
+  </select>
+  
+<!--   <select id="selectFile" parameterType="int" resultType="FileDTO">
+  	select * from upload where num=#{num}
+  </select> -->
+  
+  <select id="selectList" parameterType="com.cnema.util.RowNum" resultType="QnaDTO">
+  	select * from
+  		(select rownum r, N.* from
+  		(select * from qna
+		order by num desc) N)
+  		where r between #{startRow} and #{lastRow}
+  </select>
+  
+
+  <insert id="insert" parameterType="com.cnema.board.BoardDTO">
+  	<selectKey keyProperty="num" resultType="int" order="BEFORE">
+  		select movie_seq.nextval from dual
+  	</selectKey>
+  	insert into qna
+  	values(#{num},#{area},#{location},#{type},#{title},#{writer},#{contents},sysdate,#{fileName},#{oriName},null,null,null,#{email})
+  </insert>
+   
+   <!-- 수정하기  -->
+  <update id="update" parameterType="QnaDTO">
+  	update qna set reply=#{reply}, reply_id=#{reply_id}, reply_date=sysdate where num=#{num}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+	delete qna where num=#{num}
+  </delete>
+  
+  <select id="totalCount" parameterType="com.cnema.util.RowNum" resultType="int">
+  	select count(*) from qna
+  
+  </select>
+  
+  <!--회원자신의 리스트만 보여주기  -->
+  <select id="selectMyList" parameterType="java.lang.String"  resultType="QnaDTO">
+	select * from qna where writer=#{id} order by num desc
+  	
+  </select>
+  
+
+  <select id="getNum" resultType="int">
+  	select movie_seq.nextval from dual
+  </select>
+  
+  <!-- heeseong -->
+  	<select id="qTotalCount" parameterType="java.util.Map" resultType="int">
+  		select count(num) from qna
+  		<choose>
+  		<when test="kind == 'title'">
+  			where writer=#{id} and title like '%'||#{search}||'%'
+ 		</when>
+ 		<when test="kind == 'contents'">
+ 			where writer=#{id} and contents like '%'||#{search}||'%'
+ 		</when>
+ 		<otherwise>
+ 		</otherwise>
+  	</choose>
+  	</select>
+  	
+  <!-- heeseong -->
+  <select id="myQnaList" parameterType="java.util.Map" resultType="qnaDTO">
+   	select * from (
+		select rownum R, N.* from  		
+		(select * from qna where writer=#{id}
+  	<choose>
+  		<when test="kind == 'title'">
+  			 and title like '%'||#{search}||'%'
+ 		</when>
+ 		<when test="kind == 'contents'">
+ 			and contents like '%'||#{search}||'%'
+ 		</when>
+ 		<otherwise>
+ 		</otherwise>
+  	</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  	<!-- select * from qna 
+  	<choose>
+  		<when test="kind == 'title'">
+  			where writer=#{id} and title like '%'||#{search}||'%'
+ 		</when>
+ 		<when test="kind == 'contents'">
+ 			where writer=#{id} and contents like '%'||#{search}||'%'
+ 		</when>
+ 		<otherwise>
+ 		</otherwise>
+  	</choose> -->
+  </select>
+  
+  </mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="reserveMapper">
+  
+  	<select id="seatCheck" parameterType="java.util.Map" resultType="int">
+  		select seat_num from reserve where screen_num=#{screen_num} and schedule_num=#{schedule_num}
+  	</select>
+  
+ 	<insert id="reserveInsert" parameterType="reserveDTO">
+  		insert into reserve values(movie_seq.nextval,#{theater_num},#{screen_num},#{schedule_num},#{seat},#{movie_num},#{id},#{tp_num})
+  	</insert>
+  	<select id="rTotalCount" parameterType="java.util.Map" resultType="int">
+  		<choose>
+  			<when test="kind=='no'">
+  				select count(distinct tp_num) from reserve where id=#{id}
+  			</when>
+  			<otherwise>
+  				select count(distinct T.tp_num) from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind}
+  			</otherwise>
+  		</choose>
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="reserveLeftbar" resultType="int" parameterType="String">
+  	 	select count(reserve_num) from reserve where id=#{id}
+  	</select>
+  	<select id="reserveList" resultType="reserveDTO" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(<choose>
+  			<when test="kind=='no'">
+  				select distinct tp_num from reserve where id=#{id} order by  tp_num desc
+  			</when>
+  			<otherwise>
+  				select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind} order by  T.tp_num desc
+  			</otherwise>
+  		</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select distinct T.tp_num from ticketprice T, reserve R where T.tp_num=R.tp_num and R.id=#{id} and to_char(T.reg_date,'yyyy')=#{kind} -->
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="reserveAList" resultType="reserveDTO" parameterType="java.lang.String">
+  		select distinct tp_num from reserve where id=#{id}
+  	</select>
+  	<!-- heeseong -->
+  	<select id="reserveBList" resultType="reserveDTO" parameterType="map">
+  		select * from (select rownum R, RE.* from reserve RE where tp_num=#{tp_num} and id=#{id}) where R=1
+  	</select>
+  	<!-- heeseong -->
+  	<select id="selectList" resultType="reserveDTO" parameterType="java.lang.String">
+  		select * from reserve where id=#{id} order by  reserve_num desc
+  	</select>
+  	<!-- heeseong -->
+  	<delete id="reserveDel" parameterType="int" >
+  		delete reserve where tp_num=#{tp_num}
+  	</delete>
+  </mapper>

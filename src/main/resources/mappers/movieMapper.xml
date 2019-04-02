@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="movieMapper">
+
+	<select id="homeMovieList" resultType="movieDTO">
+		select * from movie order by movie_num desc
+	</select>
+	
+  	<select id="totalCount" parameterType="java.util.Map" resultType="int">
+  		select count(*) from review R, member M where R.id=M.id and R.movie_num=#{movie_num}
+  	</select>
+
+	<select id="warningCheck" parameterType="java.util.Map" resultType="warningDTO">
+		select * from warning where id=#{id} and review_num=#{review_num}
+	</select>
+
+	<update id="warningUpdate" parameterType="int">
+		update review set warning=warning+1 where review_num=#{review_num} 
+	</update>
+
+	<insert id="warningInsert" parameterType="java.util.Map">
+		insert into warning values(movie_seq.nextval, #{review_num}, #{id})
+	</insert>
+
+	<delete id="wishDelete" parameterType="java.util.Map">
+		delete wish where movie_num=#{movie_num} and id=#{id}
+	</delete>
+
+	<insert id="wishInsert" parameterType="java.util.Map">
+		insert into wish values(movie_seq.nextval, #{movie_num}, #{id})
+	</insert>
+
+	<update id="movieWishReturn" parameterType="int">
+		update movie set wish=wish-1 where movie_num=#{movie_num}
+	</update>
+	
+	<update id="movieWish" parameterType="int">
+		update movie set wish=wish+1 where movie_num=#{movie_num}
+	</update>
+
+ 	<select id="wishList" resultType="com.cnema.movie.WishDTO">
+		select * from wish
+	</select>
+
+ 	<select id="wishList1"  parameterType="String" resultType="com.cnema.movie.WishDTO">
+		select * from wish	where id=#{id}
+	</select>
+
+  	<select id="selectOne" resultType="movieDTO" parameterType="int">
+  		SELECT * FROM movie WHERE movie_num=#{movie_num}
+  	</select>
+ 
+   	<select id="qrMovieList" resultType="movieDTO">
+  		select * from movie where show=10
+  	</select>
+  	
+  	<select id="mTotalCount" parameterType="java.util.Map" resultType="int">
+  		select count(movie_num) from movie
+  		<choose>
+  			<when test="kind == 'title'">
+  				where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  				where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose>
+  	</select>
+  	
+  	<!-- heeseong-->
+  	<select id="movieAList" parameterType="java.util.Map" resultType="movieDTO">
+ 	 	select * from (
+		select rownum R, N.* from  		
+		(select * from movie 
+  		<choose>
+  			<when test="kind == 'title'">
+  				where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  				where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select * from movie 
+  		<choose>
+  			<when test="kind == 'title'">
+  				where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  				where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose> -->
+  	</select>
+  	
+  	<select id="movieList" parameterType="java.util.Map" resultType="movieDTO">
+  		select * from movie 
+  		<choose>
+  			<when test="kind == 'grade'">
+  				order by grade desc
+  			</when>
+  			<when test="kind == 'open_date'">
+  				order by open_date desc
+  			</when>
+  			<when test="kind == 'reserve_rate'">
+  				order by reserve_rate desc
+  			</when>
+  			<when test="kind == 'wish'">
+  				order by wish desc
+  			</when>
+  			<when test="kind == 'title'">
+  				where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  				where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose>
+  	</select>
+  	
+	<select id="reviewList" parameterType="java.util.Map" resultType="reviewDTO">
+		select * from (
+		select rownum R, N.* from
+		(select RE.*, M.fileName from review RE, member M where 
+		movie_num=#{movie_num} and M.id=RE.id and RE.r_type=10 order by RE.reg_date desc) N)
+		where R between #{rowNum.startRow} and #{rowNum.lastRow}
+	</select>
+  	
+  	<select id="warningList" parameterType="int" resultType="warningDTO">
+  		select * from warning where review_num=#{review_num}
+  	</select>
+
+  	<insert id="movieInsert" parameterType="movieDTO">
+  		insert into movie values(movie_seq.nextval, #{movie_name}, #{fileName}, #{oriName}, #{teaser_url}, 0, 0, #{open_date}, #{run_time}, 0, #{type}, #{contents}, #{age_limit}, #{actor}, #{show})
+  	</insert>
+
+
+
+
+  	<!-- heeseong -->
+  	<select id="movieInfo" resultType="movieDTO" >
+  		select * from movie where movie_num=#{movie_num}
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="movieSInfo" resultType="movieDTO" parameterType="java.util.Map">
+  		select W.* from wish W, movie M where W.id=#{id} and M.movie_num=#{movie_num} order by M.open_date asc
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<!-- <select id="movieList" resultType="movieDTO">
+  		select * from movie order by movie_num desc
+  	</select> -->
+  	
+  	<!-- heeseong -->
+  	<update id="movieRevision" parameterType="movieDTO">
+  		update movie set movie_name=#{movie_name}, teaser_url=#{teaser_url},open_date=#{open_date},run_time=#{run_time},type=#{type},contents=#{contents},age_limit=#{age_limit},actor=#{actor},show=#{show} where movie_num=#{movie_num}
+  	</update>
+  	
+  	<!-- heeseong -->
+  	<!-- <select id="movieList" parameterType="java.util.Map" resultType="movieDTO">
+  		select * from movie 
+  		<choose>
+  			<when test="kind == 'title'">
+  			where movie_name like '%'||#{search}||'%'
+  			</when>
+  			<when test="kind == 'actor'">
+  			where actor like '%'||#{search}||'%'
+  			</when>
+  			<otherwise>
+  			</otherwise>
+  		</choose>
+  	</select> -->
+</mapper>

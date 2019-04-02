@@ -1,0 +1,983 @@
+  CREATE TABLE "CNEMA"."COUPON" 
+   (	"NAME" VARCHAR2(400 BYTE), 
+	"TYPE" NUMBER(8,0), 
+	"PRICE" VARCHAR2(20 BYTE), 
+	"V_DAY" NUMBER(8,0), 
+	"C_NUM" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."COUPON"."TYPE" IS '할인률:10 /  금액할인:11';
+   COMMENT ON COLUMN "CNEMA"."COUPON"."V_DAY" IS '쿠폰 유효일';
+
+
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('3000원할인쿠폰',11,'3000',8,1341);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('4000원할인쿠폰',11,'4000',10,1342);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('5000원할인쿠폰',11,'5000',5,1344);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('1000원할인쿠폰',11,'1000',7,1338);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('2000원할인쿠폰',11,'2000',7,1339);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('6000원할인쿠폰',11,'6000',2,1345);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('9000원할인쿠폰',11,'9000',6,1346);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('10000원할인쿠폰',11,'9000',1,1347);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('10퍼센트할인쿠폰',10,'0.9',2,1349);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('20퍼센트할인쿠폰',10,'0.8',2,1350);
+Insert into CNEMA.COUPON (NAME,TYPE,PRICE,V_DAY,C_NUM) values ('30퍼센트할인쿠폰',10,'0.7',7,1352);
+
+
+  CREATE TABLE "CNEMA"."COUPONGROUP" 
+   (	"NUM" NUMBER(8,0), 
+	"GROUP_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(20 BYTE)
+   );
+
+SET DEFINE OFF;
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1728,66448,'hjun1121');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1729,66448,'hsung0823');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1422,78712,'hjun1121');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1423,78712,'hsung0823');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1424,78712,'ssin226');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1425,3515,'hyun0226');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1426,3515,'min1994');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1427,57782,'library_4');
+Insert into CNEMA.COUPONGROUP (NUM,GROUP_NUM,ID) values (1428,57782,'library_44');
+
+
+ CREATE TABLE "CNEMA"."EVENT" 
+   (	"NUM" NUMBER(8,0), 
+	"TITLE" VARCHAR2(400 BYTE), 
+	"WRITER" VARCHAR2(400 BYTE), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"FILENAME" VARCHAR2(400 BYTE), 
+	"ORINAME" VARCHAR2(400 BYTE), 
+	"S_DATE" DATE, 
+	"E_DATE" DATE, 
+	"TYPE" VARCHAR2(400 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."EVENT"."S_DATE" IS '이벤트 시작일';
+   COMMENT ON COLUMN "CNEMA"."EVENT"."E_DATE" IS '이벤트 종료일';
+   COMMENT ON COLUMN "CNEMA"."EVENT"."TYPE" IS '이벤트 종류(쿠폰 : 10 / 포인트 : 11 / 그 외 : 12)';
+
+
+Insert into CNEMA.EVENT (NUM,TITLE,WRITER,CONTENTS,FILENAME,ORINAME,S_DATE,E_DATE,TYPE) values (1495,'올 더 머니 포토티켓 이벤트','sn1234','<p><img src="/c1/resources/upload/0070fd12-d599-45ae-8dd9-6ac0100a78da.JPG" title="1.JPG"><br style="clear:both;">&nbsp;</p>','d12f1ce9-4e15-4b43-8aa9-54123fb4506f.jpg','15168391164290.jpg',to_date('18/01/23','RR/MM/DD'),to_date('18/02/10','RR/MM/DD'),'포인트');
+Insert into CNEMA.EVENT (NUM,TITLE,WRITER,CONTENTS,FILENAME,ORINAME,S_DATE,E_DATE,TYPE) values (1521,'염력 N차 관람 이벤트','sn1234','<p><img src="/c1/resources/upload/f6b8d6b5-aeec-4abe-bc2f-eb194694bab9.JPG" title="d.JPG"><br style="clear:both;">&nbsp;</p>','191614ae-dce4-4a1c-a2c7-dca74ed37b5e.jpg','15169560462170.jpg',to_date('18/01/15','RR/MM/DD'),to_date('18/02/10','RR/MM/DD'),'쿠폰');
+Insert into CNEMA.EVENT (NUM,TITLE,WRITER,CONTENTS,FILENAME,ORINAME,S_DATE,E_DATE,TYPE) values (1538,'블랙펜서 이벤트','sn1234','<p><img src="/c1/resources/upload/af324b31-c7ae-4ff4-8794-32bddef9f945.JPG" title="bb.JPG"><br style="clear:both;">&nbsp;</p>','6a652fd6-19c2-4449-b5a2-64b9b1ecee73.jpg','15169432327320.jpg',to_date('18/01/15','RR/MM/DD'),to_date('18/02/10','RR/MM/DD'),'쿠폰');
+Insert into CNEMA.EVENT (NUM,TITLE,WRITER,CONTENTS,FILENAME,ORINAME,S_DATE,E_DATE,TYPE) values (1551,'고스트 스토리 관람평 이벤트','sn1234','<p><img src="/c1/resources/upload/2949f0cd-f260-4bfd-8819-9d79f0987367.jpg" title="ghoststory_cgv.jpg"><br style="clear:both;">&nbsp;</p>','e19f80e6-d871-4fe6-a4cd-5fd8c52a763f.jpg','ghoststory_cgv (1).jpg',to_date('18/01/16','RR/MM/DD'),to_date('18/01/29','RR/MM/DD'),'쿠폰');
+Insert into CNEMA.EVENT (NUM,TITLE,WRITER,CONTENTS,FILENAME,ORINAME,S_DATE,E_DATE,TYPE) values (1468,'커플 등록 이벤트','sn1234','<p><img src="/c1/resources/upload/938d85c5-4c02-46d3-8fa0-691b2c4b17e5.jpg" title="[CGV_1801_058]mobile_800.jpg"><br style="clear:both;">&nbsp;</p>','0e281989-8c3a-42e1-aa1e-049e9594f565.jpg','15168716192800.jpg',to_date('18/01/23','RR/MM/DD'),to_date('18/02/10','RR/MM/DD'),'포인트');
+Insert into CNEMA.EVENT (NUM,TITLE,WRITER,CONTENTS,FILENAME,ORINAME,S_DATE,E_DATE,TYPE) values (1541,'원더 관람평 이벤트','sn1234','<p><img src="/c1/resources/upload/70ecdd12-708c-4937-a61e-8ae6fbc7831b.jpg" title="wonder_cgv_980.jpg"><br style="clear:both;">&nbsp;</p>','c8d9b5cf-c5cf-4402-bc30-095d07b70a8b.JPG','wonder_icon.JPG',to_date('18/01/16','RR/MM/DD'),to_date('18/01/29','RR/MM/DD'),'쿠폰');
+Insert into CNEMA.EVENT (NUM,TITLE,WRITER,CONTENTS,FILENAME,ORINAME,S_DATE,E_DATE,TYPE) values (1570,'패터슨 감상평 이벤트','sn1234','<img src="/c1/resources/upload/fd18e120-57f7-446c-bdd8-4077b0255bc0.jpg" title="paterson_cgv(980).jpg"><br style="clear:both;">','5192e733-5ee1-4b0c-8ce2-b4b89974568f.jpg','paterson_icon.jpg',to_date('18/01/23','RR/MM/DD'),to_date('18/01/29','RR/MM/DD'),'쿠폰');
+
+
+  CREATE TABLE "CNEMA"."EVENTJOIN" 
+   (	"NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(400 BYTE), 
+	"TYPE" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."EVENTJOIN"."TYPE" IS '당첨 유무(당첨 : 10 / 비당첨 : 11)';
+
+
+CREATE TABLE "CNEMA"."MEMBER" 
+   (	"ID" VARCHAR2(400 BYTE), 
+	"PW" VARCHAR2(400 BYTE), 
+	"NAME" VARCHAR2(400 BYTE), 
+	"BIRTH" DATE, 
+	"GENDER" VARCHAR2(400 BYTE), 
+	"PHONE" VARCHAR2(400 BYTE), 
+	"EMAIL" VARCHAR2(400 BYTE), 
+	"POSTCODE" VARCHAR2(400 BYTE), 
+	"ADDR1" VARCHAR2(2000 BYTE), 
+	"ADDR2" VARCHAR2(2000 BYTE), 
+	"TYPE" NUMBER(8,0), 
+	"V_POINT" NUMBER(8,0), 
+	"A_POINT" NUMBER(8,0), 
+	"REG_DATE" DATE, 
+	"FILENAME" VARCHAR2(400 BYTE), 
+	"ORINAME" VARCHAR2(400 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."MEMBER"."TYPE" IS '일반회원:10 / VIP:11 / 관리자:20';
+   COMMENT ON COLUMN "CNEMA"."MEMBER"."V_POINT" IS '가용 포인트';
+   COMMENT ON COLUMN "CNEMA"."MEMBER"."A_POINT" IS '누적 포인트';
+   COMMENT ON COLUMN "CNEMA"."MEMBER"."FILENAME" IS '프로필 사진 file_name';
+   COMMENT ON COLUMN "CNEMA"."MEMBER"."ORINAME" IS '프로필 사진 ori_name';
+
+
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('hjun1121','gudwns932@','김형준',to_date('93/06/21','RR/MM/DD'),'m','010-3000-6000','library_4@naver.com','06017','서울 강남구 압구정로42길 25-3 (신사동, KH빌딩)','10층',20,23200,106000,to_date('18/01/29','RR/MM/DD'),'8c2efc92-97e9-4db3-832d-8cd6b6817c27.jpg','joy1.jpg');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('hsung0823','hsung0823!!','장희성',to_date('95/03/08','RR/MM/DD'),'f','010-7387-3824','library_4@naver.com','16295','경기 수원시 장안구 경수대로976번길 22 (조원동, 수원 한일타운)','127-2004호',20,6000,6000,to_date('18/01/29','RR/MM/DD'),'a533b7e7-3840-40fc-a071-5a48334a886d.png','ddd.png');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('ssin226','ssin226!!','신현민',to_date('94/02/26','RR/MM/DD'),'f','010-4143-9313','library_4@naver.com','13625','경기 성남시 분당구 구미로 50 (구미동, 무지개마을LG아파트)','204동 1502호',20,62200,101200,to_date('18/01/29','RR/MM/DD'),'0b018e1e-2801-4730-b96e-b0a139f792a6.PNG','내프로필.PNG');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('sn1234','sn12345678!','박세나',to_date('91/10/02','RR/MM/DD'),'f','010-1234-4567','sena911002@naver.com','02529','서울 동대문구 답십리로 237 (장안동)','135-5',20,1000,1000,to_date('18/01/29','RR/MM/DD'),'9a3fa0b4-ddec-4d1f-974b-aee8d3f537ca.jpg','images.jpg');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('library_4','gudwns93!!','김형준',to_date('93/07/20','RR/MM/DD'),'m','010-1111-1111','library_4@naver.com','08342','서울 구로구 오리로 지하 1154 (오류동, 천왕역,천왕역환승센터(공영주차장))','2층',20,35200,51200,to_date('18/01/29','RR/MM/DD'),'c3e29267-005c-412d-8b0d-8d895367710d.PNG','둠피스트.PNG');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('hjunhjun1','gudwns932@','김빡빡',to_date('91/09/09','RR/MM/DD'),'m','011-1234-1234','library_4@naver.com','28562','충북 청주시 서원구 1순환로 627 (사창동, 에덴건축)','203호',10,43100,51100,to_date('18/01/29','RR/MM/DD'),'6798e3f8-ba3c-4c7f-8093-cff7f2357052.jpg','joy1.jpg');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('hsung0308','hsung0308!!','장희성2',to_date('98/03/18','RR/MM/DD'),'m','010-1234-5678','library_4@naver.com','16295','경기 수원시 장안구 경수대로976번길 22 (조원동, 수원 한일타운)','127-2004',10,1000,1000,to_date('18/01/29','RR/MM/DD'),'defaultProfile.jpg','defaultProfile.jpg');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('library_44','gudwns93!!','김형준',to_date('18/01/01','RR/MM/DD'),'m','010-2222-2222','library_4@naver.com','51283','경남 창원시 마산합포구 북성로 10-1 (중성동, 김형준 치과)','1층',10,1000,1000,to_date('18/01/29','RR/MM/DD'),'69e67b56-b9c8-46ef-8473-9430053f8c3f.jpg','uefa.jpg');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('zxczxc','gudwns932@','홍길동',to_date('94/06/21','RR/MM/DD'),'m','010-5554-4678','library_4@naver.com','28806','충북 청주시 상당구 2순환로 2032 (지북동)','남도빌딩 1층',10,13100,21100,to_date('18/01/29','RR/MM/DD'),'defaultProfile.jpg','defaultProfile.jpg');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('hsung0323','hsung0323!!','장희성',to_date('16/06/08','RR/MM/DD'),'f','010-3456-7890','library_4@naver.com','16295','경기 수원시 장안구 경수대로976번길 22 (조원동, 수원 한일타운)','127-2004',10,1000,1000,to_date('18/01/29','RR/MM/DD'),'e5468ee4-354d-4c49-8b98-a21f9aa61e93.png','ddd.png');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('hyun0226','hyun0226!!','신현민',to_date('94/02/26','RR/MM/DD'),'f','010-4143-9313','library_4@naver.com','13625','경기 성남시 분당구 구미로 50 (구미동, 무지개마을LG아파트)','204-1502',10,69100,101100,to_date('18/01/29','RR/MM/DD'),'1c1765cd-2bed-4065-ab9b-02b685093e56.PNG','프로필2.PNG');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('test01','test01!!','테스트',to_date('93/10/04','RR/MM/DD'),'m','010-2323-2323','sena911002@naver.com','04705','서울 성동구 마장동 574','133-5',10,1000,1000,to_date('18/01/29','RR/MM/DD'),'b314a466-d2e0-4665-ae44-701506705045.jpg','solve_30_20170728191124.jpg');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('min1994','mini1994!!','신현민',to_date('94/02/26','RR/MM/DD'),'f','010-4143-9313','library_4@naver.com','13625','경기 성남시 분당구 구미로 50 (구미동, 무지개마을LG아파트)','204-1502',10,61200,101200,to_date('18/01/29','RR/MM/DD'),'a58b5c80-a216-42b4-b0fb-dcfaa9bd2d8b.PNG','프로필3.PNG');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('shin226','shin226!!','신현민',to_date('94/02/26','RR/MM/DD'),'f','010-4143-9313','library_4@naver.com','13625','경기 성남시 분당구 구미로 50 (구미동, 무지개마을LG아파트)','204-1502',10,1000,1000,to_date('18/01/30','RR/MM/DD'),'007e0670-ab87-4c29-bee7-dee05553896a.PNG','내프로필.PNG');
+Insert into CNEMA.MEMBER (ID,PW,NAME,BIRTH,GENDER,PHONE,EMAIL,POSTCODE,ADDR1,ADDR2,TYPE,V_POINT,A_POINT,REG_DATE,FILENAME,ORINAME) values ('gs1234','gs1234!!','한강',to_date('95/10/01','RR/MM/DD'),'m','010-4567-1111','sena911002@naver.com','05007','서울 광진구 화양동 21-49','133',10,1000,1000,to_date('18/01/29','RR/MM/DD'),'55c7c4a7-4c8a-4ac7-8ca1-b602816d7621.png','unnamed.png');
+
+
+
+  CREATE TABLE "CNEMA"."MESSAGE" 
+   (	"MESSAGE_NUM" NUMBER(8,0), 
+	"SEND_ID" VARCHAR2(400 BYTE), 
+	"RECEIVE_ID" VARCHAR2(400 BYTE), 
+	"TITLE" VARCHAR2(4000 BYTE), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"SEND_DATE" DATE, 
+	"READ_DATE" DATE, 
+	"TYPE" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."MESSAGE"."MESSAGE_NUM" IS 'message_seq';
+   COMMENT ON COLUMN "CNEMA"."MESSAGE"."SEND_ID" IS '보내는사람ID';
+   COMMENT ON COLUMN "CNEMA"."MESSAGE"."RECEIVE_ID" IS '받는사람ID';
+   COMMENT ON COLUMN "CNEMA"."MESSAGE"."SEND_DATE" IS '보내는날짜';
+   COMMENT ON COLUMN "CNEMA"."MESSAGE"."READ_DATE" IS '읽은 날짜';
+   COMMENT ON COLUMN "CNEMA"."MESSAGE"."TYPE" IS '수신: 11 / 미수신: 12';
+
+
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (49,'ssin226','min1994','ㅎㅇ','ㅎㅇ',to_date('18/01/30','RR/MM/DD'),null,12);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (42,'hyun0226','min1994','애니메이션 추천해주세요','애니메이션 좀 추천해주세요',to_date('18/01/30','RR/MM/DD'),null,12);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (43,'library_44','ssin226','안녕하세요!','하시모닝입니다',to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (44,'ssin226','library_44','닉네임으로 가입하지 마세요','실명 밝혀주세요',to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (45,'library_44','ssin226','프로필사진 비숑 너무 귀엽네요!','꺄향!!!!',to_date('18/01/30','RR/MM/DD'),null,12);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (46,'library_44','ssin226','ssin226님께','저 이제 애니애니를 탈퇴하려고 합니다.',to_date('18/01/30','RR/MM/DD'),null,12);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (47,'ssin226','gs1234','안녕하세요? 인사드려요~','하이',to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (48,'min1994','ssin226','안녕하세요 회원님 안내 문자 드립니다','안녕하세요 애니애니 에 오신걸 환영합니다',to_date('18/01/30','RR/MM/DD'),null,12);
+Insert into CNEMA.MESSAGE (MESSAGE_NUM,SEND_ID,RECEIVE_ID,TITLE,CONTENTS,SEND_DATE,READ_DATE,TYPE) values (41,'hyun0226','min1994','가입 인사 드려요~','저승 법에 의하면, 모든 인간은 사후 49일 동안 7번의 재판을 거쳐야만 한다.  살인, 나태, 거짓, 불의, 배신, 폭력, 천륜  7개의 지옥에서 7번의 재판을 무사히 통과한 망자만이 환생하여 새로운 삶을 시작할 수 있다.     “김자홍 씨께선, 오늘 예정 대로 무사히 사망하셨습니다”  화재 사고 현장에서 여자아이를 구하고 죽음을 맞이한 소방관 자홍, 그의 앞에 저승차사 해원맥과 덕춘이 나타난다. 자신의 죽음이 아직 믿기지도 않는데 덕춘은 정의로운 망자이자 귀인이라며 그를 치켜세운다. 저승으로 가는 입구, 초군문에서 그를 기다리는 또 한 명의 차사 강림, 그는 차사들의 리더이자 앞으로 자홍이 겪어야 할 7개의 재판에서 변호를 맡아줄 변호사이기도 하다. 염라대왕에게 천년 동안 49명의 망자를 환생시키면 자신들 역시 인간으로 환생시켜 주겠다는 약속을 받은 삼차사들, 그들은 자신들이 변호하고 호위해야 하는 48번째 망자이자 19년 만에 나타난 의로운 귀인 자홍의 환생을 확신하지만, 각 지옥에서 자홍의 과거가 하나 둘씩 드러나면서 예상치 못한 고난과 맞닥뜨리는데…     누구나 가지만 아무도 본 적 없는 곳,  2017년 새로운 세계의 문이 열린다!',to_date('18/01/30','RR/MM/DD'),null,12);
+
+
+
+
+
+  CREATE TABLE "CNEMA"."MOVIE" 
+   (	"MOVIE_NUM" NUMBER(8,0), 
+	"MOVIE_NAME" VARCHAR2(400 BYTE), 
+	"FILENAME" VARCHAR2(400 BYTE), 
+	"ORINAME" VARCHAR2(400 BYTE), 
+	"TEASER_URL" VARCHAR2(400 BYTE), 
+	"RESERVE_RATE" NUMBER(8,3), 
+	"WISH" NUMBER(8,0), 
+	"OPEN_DATE" DATE, 
+	"RUN_TIME" NUMBER(8,0), 
+	"GRADE" NUMBER(8,0), 
+	"TYPE" NVARCHAR2(400), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"AGE_LIMIT" NUMBER(8,0), 
+	"ACTOR" VARCHAR2(1000 BYTE), 
+	"SHOW" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."MOVIE_NUM" IS 'movie_seq';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."MOVIE_NAME" IS '영화 이름';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."FILENAME" IS '포스터 file_name';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."ORINAME" IS '포스터 ori_name';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."TEASER_URL" IS '트레일러 영상 (youtube 주소)';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."RESERVE_RATE" IS '예매율';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."WISH" IS '찜';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."OPEN_DATE" IS '개봉일';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."RUN_TIME" IS '상영시간(분)';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."GRADE" IS '평점';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."TYPE" IS '장르';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."CONTENTS" IS '영화 설명';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."AGE_LIMIT" IS '나이 제한가';
+   COMMENT ON COLUMN "CNEMA"."MOVIE"."SHOW" IS '상영유무(상영중 : 10 / 마감 : 20)';
+
+
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (151,'주토피아','0670cdd7-dca2-40ed-9e95-9e0f29edd740.jpg','주토피아.jpg','https://www.youtube.com/embed/RGucZx3TUnc',0,0,to_date('16/02/17','RR/MM/DD'),108,0,'어드벤처, 애니메이션, 코미디, 가족','누구나 살고 싶은 도시 1위, 주토피아  연쇄 실종 사건 발생!  “미치도록 잡고 싶었다!”  교양 있고 세련된 라이프 스타일을 주도하는 도시 주토피아.  이 곳을 단숨에 혼란에 빠트린 연쇄 실종사건이 발생한다!  주토피아 최초의 토끼 경찰관 주디 홉스는 48시간 안에 사건 해결을 지시 받자  뻔뻔한 사기꾼 여우 닉 와일드에게 협동 수사를 제안하는데…     2월, 스릴 넘치는 추격전의 신세계가 열린다!',0,'감독 : 바이론 하워드 ,  리치 무어  / 배우 :  지니퍼 굿윈 ,  제이슨 베이트먼 ,  샤키라',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (152,'곡성','5f87187c-2e1c-46ba-8627-3f74ff794eb0.jpg','곡성.jpg','https://www.youtube.com/embed/Ej25zrnaTXk',0,0,to_date('16/05/11','RR/MM/DD'),156,0,'미스터리, 스릴러, 드라마','낯선 외지인이 나타난 후 벌어지는 의문의 연쇄 사건들로 마을이 발칵 뒤집힌다.  경찰은 집단 야생 버섯 중독으로 잠정적 결론을 내리지만 모든 사건의 원인이 그 외지인 때문이라는 소문과 의심이 걷잡을 수 없이 퍼져 나간다.      경찰 ‘종구’(곽도원)는 현장을 목격했다는 여인 ‘무명’(천우희)을 만나면서 외지인에 대한 소문을 확신하기 시작한다.  딸 ‘효진’이 피해자들과 비슷한 증상으로 아파오기 시작하자 다급해진 ‘종구’.  외지인을 찾아 난동을 부리고, 무속인 ‘일광’(황정민)을 불러 들이는데...',15,'감독 : 나홍진  / 배우 :  곽도원 ,  황정민 ,  쿠니무라 준 ,  천우희',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (153,'검사외전','c6f8380e-1fe2-4218-838e-76a494a3d713.jpg','검사외전.jpg','https://www.youtube.com/embed/timw-LXZvUc',0,0,to_date('16/02/03','RR/MM/DD'),126,0,'범죄, 코미디','진실 앞에 무대뽀 ! 다혈질검사 , 살인 누명을 쓰고 감옥에 갇히다!  거친 수사 방식으로 유명한 다혈질 검사 ‘변재욱 ’(황정민).  취조 중이던 피의자가 변사체로 발견 되면서 살인 혐의로 체포된다.  꼼짝없이 살인 누명을 쓰게 된 ''변재욱'' 결국 15년 형을 받고 수감 된다.  진실 따위 나 몰라라! 허세남발 꽃미남 사기꾼 , 반격 작전에 선수로 기용되다!  감옥에서 복수의 칼을 갈던 재욱.  5 년 후 , 자신이 누명을 쓰게 된 사건에 대해 알고 있는 허세남발 꽃미남 사기꾼 ‘치원 ’(강동원)을  우연히 만나게 되고 , 그 순간 감옥 밖 작전을 대행해 줄 선수임을 직감한다.  검사 노하우를 총 동원 , 치원을 무혐의로 내보내고 반격을 준비하는 재욱.  하지만 자유를 얻은 치원은 재욱에게서 벗어날 기회만 호시탐탐 노리는데…  감옥에 갇힌 검사와 세상 밖으로 나온 사기꾼!  이들의 예측불허 , 반격의 한탕은 성공할 수 있을까?',15,'감독 : 이일형  / 배우 :  황정민 ,  강동원',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (154,'검은 사제들','68ebb6a9-f2ed-4b22-a57c-6d973819be61.jpg','검은 사제들.jpg','https://www.youtube.com/embed/_Mq89LG2gfw',0,0,to_date('15/11/05','RR/MM/DD'),108,0,'미스터리, 드라마','2015년 서울  뺑소니 교통사고 이후 의문의 증상에 시달리는 한 소녀(박소담).  잦은 돌출 행동으로 교단의 눈 밖에 난 ‘김신부’(김윤석)는  모두의 반대와 의심 속, 소녀를 구하기 위한 자신만의 계획을 준비한다.     이를 위해선 모든 자격에 부합하는 또 한 명의 사제가 필요한 상황,  모두가 기피하는 가운데 신학생인 ‘최부제’(강동원)가 선택되고,  그는 ‘김신부’를 돕는 동시에 감시하라는 미션을 받게 된다.     그리고 마침내 소녀를 구할 수 있는 단 하루의 기회,  김신부와 최부제는 모두의 목숨을 잃을 수도 있는 위험한 예식을 시작하는데…     “절대 쳐다보지마. 이제부터 넌 여기 없는 거야”',15,'감독 : 장재현  / 배우 :  김윤석 ,  강동원 ,  박소담',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (155,'하트 오브 더 씨','af7aaf7b-6390-492b-82f8-55e7439df2a6.jpg','하트 오브 더 씨.jpg','https://www.youtube.com/embed/zatX1p80Mxc',0,0,to_date('15/12/03','RR/MM/DD'),122,0,'어드벤처, 드라마','조난된 21명, 80톤의 고래, 94일간의 표류, 7200km의 망망대해…  걸작 ‘모비딕’을 탄생시킨 에식스호의 실화  어두운 밤, 허먼 멜빌은 급한 발걸음으로 누군가의 집을 찾는다. 그는 바로 94일간 7,200km 표류했던 21명의 조난대원들 중 살아남은 8명 중 한 사람. 허먼 멜빌의 끈질긴 요청과 부인의 간곡한 부탁으로 그는 누구에게도 이야기하지 않았던, 지옥과도 같았던 그 때의 기억을 조심스레 꺼낸다.  1819년 여름, 포경선 에식스호는 낸터킷 섬에서 항해에 올랐다. 그러나 15개월 뒤, 남태평양의 한가운데서 길이 30m, 무게 80톤의 성난 향유고래의 공격을 당하면서 238톤의 배가 단 10분 만에 침몰한다. 침몰한 배에서 살아 남은 21명의 선원들은 3개의 보트에 나눠 타고 육지를 찾아 나서지만 남아있던 건빵도 식수도 떨어져 간다. 가족보다 더욱 끈끈했던 그들은 거친 폭풍우와 절망, 고독, 양심과 싸우면서 먹을 것도, 희망도 없는 망망대해에서 살아남기 위해 인간으로서 가장 비극적인 선택을 해야만 하는데…',12,'감독 : 론 하워드  / 배우 :  크리스 햄스워스 ,  킬리언 머피 ,  벤 위쇼 ,  샬롯 라일리 ,  브렌단 글리슨 ,  벤자민 워커',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (156,'인턴','2c43a849-3369-42b9-9b6b-deb26e636b18.jpg','인턴.jpg','https://www.youtube.com/embed/pOnNb4gL5wg',0,0,to_date('15/09/24','RR/MM/DD'),121,0,'코미디','프라다 입은 악마를 벗어난 ''앤 해서웨이'',  수트 입은 70세 인턴 ''로버트 드 니로''를 만나다!     창업 1년 반 만에 직원 220명의 성공신화를 이룬 줄스(앤 해서웨이). TPO에 맞는 패션센스, 업무를 위해 사무실에서도 끊임 없는 체력관리, 야근하는 직원 챙겨주고, 고객을 위해 박스포장까지 직접 하는 열정적인 30세 여성 CEO! 한편, 수십 년 직장생활에서 비롯된 노하우와 나이만큼 풍부한 인생경험이 무기인 만능 70세의 벤(로버트 드 니로)을 인턴으로 채용하게 되는데..',12,'감독 : 낸시 마이어스  / 배우 :  로버트 드 니로 ,  앤 해서웨이',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (2,'신과 함께-죄와 벌','3512bb22-5ed7-4fdc-8965-f9e84cee1162.jpg','신과함께.jpg','https://www.youtube.com/embed/5O5PVvHTWRo',1,4,to_date('17/12/20','RR/MM/DD'),139,5,'드라마, 환타지','저승 법에 의하면, 모든 인간은 사후 49일 동안 7번의 재판을 거쳐야만 한다.<br>살인, 나태, 거짓, 불의, 배신, 폭력, 천륜  <br>7개의 지옥에서 7번의 재판을 무사히 통과한 망자만이 환생하여 새로운 삶을 시작할 수 있다. <br><br>    “김자홍 씨께선, 오늘 예정 대로 무사히 사망하셨습니다”<br>  화재 사고 현장에서 여자아이를 구하고 죽음을 맞이한 소방관 자홍, 그의 앞에 저승차사 해원맥과 덕춘이 나타난다. 자신의 죽음이 아직 믿기지도 않는데<br> 덕춘은 정의로운 망자이자 귀인이라며 그를 치켜세운다. 저승으로 가는 입구, 초군문에서 그를 기다리는 또 한 명의 차사 강림, 그는 차사들의 리더이자 앞<br>으로 자홍이 겪어야 할 7개의 재판에서 변호를 맡아줄 변호사이기도 하다. 염라대왕에게 천년 동안 49명의 망자를 환생시키면 자신들 역시 인간으로 환생<br>시켜 주겠다는 약속을 받은 삼차사들, 그들은 자신들이 변호하고 호위해야 하는 48번째 망자이자 19년 만에 나타난 의로운 귀인 자홍의 환생을 확신하지<br>만, 각 지옥에서 자홍의 과거가 하나 둘씩 드러나면서 예상치 못한 고난과 맞닥뜨리는데…   <br><br>  누구나 가지만 아무도 본 적 없는 곳, <br> 2017년 새로운 세계의 문이 열린다!',15,'감독 : 김용화  / 배우 : 
+하정우 ,  차태현 ,  주지훈 ,  김향기 ,  이정재',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (157,'베테랑','4bd2aca7-deab-4612-9543-ebe467370718.jpg','베테랑.jpg','https://www.youtube.com/embed/hcKp68DtBb0',0,0,to_date('15/08/05','RR/MM/DD'),124,0,'액션, 드라마','한 번 꽂힌 것은 무조건 끝을 보는 행동파 ‘서도철’(황정민),  20년 경력의 승부사 ‘오팀장’(오달수), 위장 전문 홍일점 ‘미스봉’(장윤주), 육체파 ‘왕형사’(오대환), 막내 ‘윤형사’(김시후)까지 겁 없고, 못 잡는 것 없고, 봐주는 것 없는 특수 강력사건 담당 광역수사대.     오랫동안 쫓던 대형 범죄를 해결한 후 숨을 돌리려는 찰나, 서도철은 재벌 3세 ‘조태오’(유아인)를 만나게 된다. 세상 무서울 것 없는 안하무인의 조태오와 언제나 그의 곁을 지키는 오른팔 ‘최상무’(유해진). 서도철은 의문의 사건을 쫓던 중 그들이 사건의 배후에 있음을 직감한다.     건들면 다친다는 충고에도 불구하고 포기하지 않는 서도철의 집념에 판은 걷잡을 수 없이 커져가고 조태오는 이를 비웃기라도 하듯 유유히 포위망을 빠져 나가는데…     베테랑 광역수사대 VS 유아독존 재벌 3세  2015년 여름, 자존심을 건 한판 대결이 시작된다!',15,'감독 : 류승완  / 배우 :  황정민 ,  유아인 ,  유해진 ,  오달수 ,  장윤주 ,  김시후 ,  정웅인 ,  정만식 ,  진경 ,  유인영',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (158,'미니언즈','7364b124-9194-4f40-a2b6-42780783be8c.jpg','미니언즈.jpg','https://www.youtube.com/embed/Gu6DX5XKn-A',0,0,to_date('15/07/29','RR/MM/DD'),91,0,'애니메이션','비켜, 이 구역의 주인공은 나야!  최고의 악당을 찾아 떠나는 ‘슈퍼배드 원정대’의 모험이 시작된다!     인류가 탄생하기 훨씬 오래 전, 태초에 미니언이 있었다. 당대 최고의 슈퍼 악당만을 보스로 섬겨온 미니언들!     하지만 의도치 않은 치명적(?) 실수로 인해 보스들과 이별하게 되고, 우울증에 빠진 미니언들을 구하기 위해 용감한 리더 ‘케빈’은 자유로운 영혼 ‘스튜어트’와 무한 긍정 ‘밥’과 함께 ‘슈퍼배드 원정대’를 결성한다.     세계 악당 챔피언십에 참석해 최초의 여성 슈퍼 악당 ‘스칼렛’(산드라 블록)을 보고 첫눈에 홀~딱 반한 이들은 일생일대의 위기가 다가오는지도 모른 채 스칼렛의 특급 미션을 넙죽 받게 되는데…',0,'감독 : 피에르 코핀 ,  카일 발다  / 배우 :  산드라 블록 ,  존 햄 ,  마이클 키튼',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (168,'인사이드 아웃','d2b091bf-5159-469b-8a9f-37ab71e75b4c.jpg','인사이드 아웃.jpg','https://www.youtube.com/embed/1KGZtWbZtq8',0,1,to_date('15/10/22','RR/MM/DD'),102,0,'애니메이션, 코미디','“괜찮아, 다 잘 될 거야!  우리가 행복하게 만들어 줄게”     모든 사람의 머릿속에 존재하는 감정 컨트롤 본부  그곳에서 불철주야 열심히 일하는 기쁨, 슬픔, 버럭, 까칠, 소심 다섯 감정들.     이사 후 새로운 환경에 적응해야 하는 ‘라일리’를 위해  그 어느 때 보다 바쁘게 감정의 신호를 보내지만  우연한 실수로 ‘기쁨’과 ‘슬픔’이 본부를 이탈하게 되자  ''라일리’의 마음 속에 큰 변화가 찾아온다.     ''라일리''가 예전의 모습을 되찾기 위해서는 ‘기쁨’과 ‘슬픔’이 본부로 돌아가야만 한다!  그러나 엄청난 기억들이 저장되어 있는 머릿속 세계에서 본부까지 가는 길은 험난하기만 한데…  과연, ‘라일리’는 다시 행복해질 수 있을까?     지금 당신의 머릿속에서 벌어지는 놀라운 일!  하루에도 몇번씩 변하는 감정의 비밀이 밝혀진다!',0,'감독 : 피트 닥터  / 배우 :  다이안 레인 ,  에이미 포엘러 ,  카일 맥라클란 ,  민디 캘링 ,  빌 헤이더',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (388,'코코','facb02d1-d680-4a0d-8807-ab6d2a659c9b.jpg','코코.jpg','https://www.youtube.com/embed/LmS5KMJTWlA',0,3,to_date('18/01/11','RR/MM/DD'),127,0,'애니메이션','영원히 기억하고 싶은 황홀한 모험이 시작된다!     뮤지션을 꿈꾸는 소년 미구엘은 전설적인 가수 에르네스토의 기타에 손을 댔다 ‘죽은 자들의 세상’에 들어가게 된다.  그리고 그곳에서 만난 의문의 사나이 헥터와 함께 상상조차 못했던 모험을 시작하게 되는데…  과연 ‘죽은 자들의 세상’에 숨겨진 비밀은? 그리고 미구엘은 무사히 현실로 돌아올 수 있을까?',0,'감독 : 리 언크리치  / 배우 :  가엘 가르시아 베르날 ,  앤서니 곤잘레스 ,  벤자민 브랫',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (389,'메이즈 러너:데스 큐어','408bc838-dff3-4ed6-b287-f4de2fb6a083.jpg','메이즈 러너_데스 큐어.jpg','https://www.youtube.com/embed/_DkF1V30OCo',0,1,to_date('18/01/17','RR/MM/DD'),143,0,'액션, SF, 스릴러','미로의 끝을 확인하라!   미스터리한 조직 ‘위키드’에게 잡힌 ‘민호’(이기홍)를 구하기 위해  ‘토마스’(딜런 오브라이언)와 러너들은 ‘위키드’의 본부가 있는 최후의 도시로 향한다.  인류의 운명이 걸린 ‘위키드’의 위험한 계획을 알게 된  ‘토마스’와 러너들은 마지막 사투를 준비하지만,  ‘토마스’는 친구와 인류의 운명 앞에서 딜레마에 빠지게 되는데…',12,'감독 : 웨스 볼  / 배우 :  딜런 오브라이언 ,  토마스 브로디 생스터 ,  카야 스코델라리오 ,  이기홍(1)',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (21,'1987','bfbe5504-4f94-4d39-a55b-d8628d9dd19b.jpg','1987.jpg','https://www.youtube.com/embed/_6_id7fZxhs',5,1,to_date('17/12/27','RR/MM/DD'),129,1,'드라마','“책상을 탁! 치니 억! 하고 죽었습니다”     1987년 1월, 경찰 조사를 받던 스물두 살 대학생이 사망한다.  증거인멸을 위해 박처장(김윤석)의 주도 하에 경찰은 시신 화장을 요청하지만, 사망 당일 당직이었던 최검사(하정우)는 이를 거부하고 부검을 밀어붙인다.  단순 쇼크사인 것처럼 거짓 발표를 이어가는 경찰. 그러나 현장에 남은 흔적들과 부검 소견은 고문에 의한 사망을 가리키고,  사건을 취재하던 윤기자(이희준)는 ‘물고문 도중 질식사’를 보도한다. 이에 박처장은 조반장(박희순)등 형사 둘만 구속시키며 사건을 축소하려 한다.  한편, 교도소에 수감된 조반장을 통해 사건의 진상을 알게 된 교도관 한병용(유해진)은 이 사실을 수배 중인 재야인사에게 전달하기 위해 조카인 연희(김태리)에게 위험한 부탁을 하게 되는데…     한 사람이 죽고, 모든 것이 변화하기 시작했다.  모두가 뜨거웠던 1987년의 이야기.',15,'감독 : 장준환  / 프로듀서 :  정원찬  / 배우 : 
+김윤석 ,  하정우 ,  유해진 ,  김태리 ,  박희순 ,  이희준',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (22,'쥬만지:새로운 세계','f3e0f03e-20f9-426a-91ac-dc33f0edd69a.jpg','쥬만지.jpg','https://www.youtube.com/embed/hEw9rdiUlNA',4,0,to_date('18/01/03','RR/MM/DD'),118,9,'액션, 어드벤처','학교 창고를 청소하다가 낡은 ‘쥬만지’ 비디오 게임을 발견한 네 명의 아이들.  게임 버튼을 누르는 순간 화면 속으로 빨려 들어가버렸다!  거대한 몸집의 고고학자 닥터 브레이브스톤(드웨인 존슨)으로 변한 공부벌레 스펜서,  슈퍼 여전사 루비 라운드하우스(카렌 길런)가 된 운동신경 제로 마사,  저질체력의 동물학 전문가 무스 핀바(케빈 하트)가 된 예비 풋볼선수 프리지,  중년의 지도 연구학 교수 셸리 오베론(잭 블랙)으로 변해버린 SNS 중독 퀸카 베서니까지.  이들은 자신의 아바타가 가진 능력으로 게임 속 세계를 구하는 미션을 수행하고 현실로 돌아가야만 하는데….     전설의 게임이 다시 시작된다!',12,'감독 : 제이크 캐스단  / 프로듀서 :  로렌 셀리그  / 배우 : 
+드웨인 존슨 ,  잭 블랙 ,  케빈 하트 ,  카렌 길런',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (23,'페르디난드','66433598-67a1-4576-99f0-ea5f0f4f3603.jpg','페르디난드.jpg','https://www.youtube.com/embed/qzupSOMx11s',8,2,to_date('18/01/03','RR/MM/DD'),108,3,'애니메이션, 코미디, 어드벤처','덩치만큼 러블리한 녀석이 온다  꽃을 사랑하는 소블리의 컴백홈 어드벤처     몸집은 거대하지만, 마음은 따뜻한 소블리 페르디난드.  세상에서 가장 좋아하는 것은 아름다운 꽃향기와 사랑스러운 친구 니나.  어느 날 꽃 축제를 구경 간 페르디난드는 벌에 엉덩이를 쏘이고 만다.  너무 아파서 날뛰는 모습을 오해한 사람들은 페르디난드를 싸움소 훈련장에 끌고 간다.  하지만 싸움은 해본 적도, 관심도 없는 페르디난드는  수다쟁이 염소, 시끌벅적 황소들, 깨방정 고슴도치 삼남매 친구들과 함께  집으로 돌아가기 위한 좌충우돌 모험을 시작한다.',0,'감독 : 카를로스 살다나  / 배우 : 
+존 시나 ,  케이트 맥키넌 ,  지나 로드리게즈 ,  안소니 앤더슨 ,  데이빗 테넌트 ,  미구엘 앙겔 실베스트레 ,  후아네스',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (24,'위대한 쇼맨','e1d7c58e-0856-42ba-a04c-ae2b5cd8578b.jpg','위대한 쇼맨.jpg','https://www.youtube.com/embed/cnIOq6P8PUU',5,1,to_date('17/12/20','RR/MM/DD'),104,7,'드라마, 뮤지컬','불가능한 꿈, 그 이상의 쇼!  쇼 비즈니스의 창시자이자, 꿈의 무대로 전세계를 매료시킨 남자 ‘바넘’의 이야기에서 영감을 받아 탄생한 오리지널 뮤지컬 영화 <위대한 쇼맨>. <레미제라블> 이후 다시 뮤지컬 영화로 돌아온 휴 잭맨부터 잭 에프론, 미셸 윌리엄스, 레베카 퍼거슨, 젠다야까지 할리우드 최고의 배우들이 합류해 환상적인 앙상블을 선보인다. 여기에 <미녀와 야수> 제작진과 <라라랜드> 작사팀의 합류로 더욱 풍성해진 비주얼과 스토리, 음악까지 선보일 <위대한 쇼맨>은 ‘우리는 누구나 특별하다’는 메시지로 관객들에게 재미는 물론, 감동까지 선사할 것이다.  THIS IS ME! 우리는 누구나 특별하다!',12,'감독 : 마이클 그레이시  / 배우 : 
+휴 잭맨 ,  잭 에프론 ,  레베카 퍼거슨 ,  미셸 윌리엄스',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (25,'너의 이름은.','75e50500-302c-46ed-a7b4-a5c1db1d57e7.jpg','너의 이름은..jpg','https://www.youtube.com/embed/CnYtas2GR-c',6,3,to_date('18/01/04','RR/MM/DD'),107,0,'로맨스, 드라마, 애니메이션, 멜로','아직 만난 적 없는 너를, 찾고 있어  천년 만에 다가오는 혜성 기적이 시작된다  도쿄에 사는 소년 ‘타키’와 시골에 사는 소녀 ‘미츠하’는 서로의 몸이 뒤바뀌는 신기한 꿈을 꾼다 낯선 가족, 낯선 친구들, 낯선 풍경들... 반복되는 꿈과 흘러가는 시간 속, 마침내 깨닫는다 우리, 서로 뒤바뀐 거야?  절대 만날 리 없는 두 사람 반드시 만나야 하는 운명이 되다  서로에게 남긴 메모를 확인하며 점점 친구가 되어가는 ‘타키’와 ‘미츠하’ 언제부턴가 더 이상 몸이 바뀌지 않자 자신들이 특별하게 이어져있었음을 깨달은 ‘타키’는 ‘미츠하’를 만나러 가는데...  잊고 싶지 않은 사람 잊으면 안 되는 사람 너의 이름은?',12,'감독 : 신카이 마코토  / 배우 : 카미키 류노스케 ,  지창욱 ,  카미시라이시 모네 ,  김소현 ,  타니 카논 ,  이 레',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (26,'원더','8f824cb3-46ce-4ce3-8a59-a0c2ba222c68.jpg','원더.jpg','https://www.youtube.com/embed/cOsTkVLXcmY',9,2,to_date('17/12/27','RR/MM/DD'),113,8,'드라마','“넌 못생기지 않았어, 네게 관심있는 사람은 알게 될 거야”  헬멧 속에 숨었던 아이 ‘어기'', 세상 밖으로 나오다!     누구보다 위트 있고 호기심 많은 매력 부자 ‘어기''(제이콥 트렘블레이).  하지만 남들과 다른 외모로 태어난 ‘어기''는 모두가 좋아하는 크리스마스 대신 얼굴을 감출 수 있는 할로윈을 더 좋아한다.  10살이 된 아들에게 더 큰 세상을 보여주고 싶었던 엄마 ‘이사벨’(줄리아 로버츠)과 아빠 ‘네이트’(오웬 윌슨)는  ?‘어기''를 학교에 보낼 준비를 하고, 동생에게 모든 것을 양보해왔지만  누구보다 그를 사랑하는 누나 ‘비아''도 ‘어기''의 첫걸음을 응원해준다.     그렇게 가족이 세상의 전부였던 ‘어기''는 처음으로 헬멧을 벗고 낯선 세상에 용감하게 첫발을 내딛지만  ?첫날부터 ‘남다른 외모''로 화제의 주인공이 되고, 사람들의 시선에 큰 상처를 받는다.  그러나 ‘어기''는 27번의 성형(?)수술을 견뎌낸 긍정적인 성격으로 다시 한번 용기를 내고,  ?주변 사람들도 하나둘 변하기 시작하는데...',0,'감독 : 스티븐 크보스키  / 배우 : 
+줄리아 로버츠 ,  오웬 윌슨 ,  제이콥 트렘블레이',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (131,'원더풀 라이프','4584c8e1-aadc-44c4-83f8-3e8cccd04c13.jpg','원더풀 라이프.jpg','https://www.youtube.com/embed/QC12uorSQjs',0,0,to_date('18/01/04','RR/MM/DD'),118,0,'드라마','천국으로 가기 전 머무는 중간역 림보.  세상을 떠난 사람들은 이곳에 7일간 머물며 인생에서 가장 소중한 기억 하나를 골라야 한다.  림보의 직원들은 그 추억을 짧은 영화로 재현해 그들을 영원으로 인도하는데…     영원히 머물고픈 순간, 당신 인생엔 있습니까?',0,'감독 : 고레에다 히로카즈  / 배우 :  이우라 아라타 ,  오다 에리카 ,  테라지마 스스무 ,  이세야 유스케',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (132,'패터슨','f5ca6a5e-d5f1-48f4-b8f6-8f4c51259ef3.jpg','패터슨.jpg','https://www.youtube.com/embed/d76IkneZL3Q',0,0,to_date('17/12/21','RR/MM/DD'),118,0,'드라마','미국 뉴저지 주의 소도시 ‘패터슨’에 사는 버스 운전사의 이름은 ‘패터슨’이다.  매일 비슷한 일상을 보내는 패터슨은 일을 마치면 아내와 저녁을 먹고 애완견 산책 겸 동네 바에 들러 맥주 한 잔으로 하루를 마무리한다.  그리고 일상의 기록들을 틈틈이 비밀 노트에 시로 써내려 간다.',12,'감독 : 짐 자무쉬  / 배우 :  아담 드라이버 ,  골쉬프테 파라하니',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (133,'굿타임','988bf91e-1540-4557-bb4d-b215f2b2e9a7.jpg','굿타임.jpg','https://www.youtube.com/embed/ednqRnjJ74w',0,0,to_date('18/01/04','RR/MM/DD'),101,0,'범죄, 드라마','영혼을 흔든 단 하룻밤의 시간, 광란의 질주가 시작된다!  지적장애 동생 ‘닉’과 그의 형 ‘코니’  코니는 그들에게 비참함을 안겨주는 뉴욕을 떠나 새로운 삶을 찾으려 은행 털이를 결심한다.  하지만 현금 2만 달러를 들고 도주하던 형제는 그들의 계획이 엉망이 되었음을 깨닫고,   동생은 홀로 구치소에 수감된다. 코니는 경찰의 수사망을 따돌리고 동생을 구하기 위해,   또 형제를 옥죄는 뉴욕으로부터 탈출하기 위해 촌각을 다투는 사투를 벌이는데…',15,'감독 : 조쉬 사프디 ,  베니 사프디  / 배우 :  로버트 패틴슨 ,  제니퍼 제이슨 리',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (136,'다운사이징','3c9ac0d5-f9a1-46d7-bc7c-88b8a46e07fc.jpg','다운사이징.jpg','https://www.youtube.com/embed/NREPEKJwxpY',0,0,to_date('18/01/11','RR/MM/DD'),135,0,'코미디, 드라마','“1억이 120억이 되는 세상!  돈 걱정, 집 걱정은 이제 끝났다!”     평생을 같은 집에 살면서 10년째 같은 식당에서 저녁을 때우며 평범한 삶을 살아가는 폴.  아내의 유일한 소원인 더 넓은 집을 갖는 것도 대출 조건이 되지 않아 포기할 수 밖에 없다.     한편, 인구과잉에 대한 해결책으로 인간축소프로젝트인 다운사이징 기술이 개발된다.  이 기술은 단순히 부피를 0.0364%로 축소시키고 무게도 2744분의 1로 줄이는 것이 아니라  1억원의 재산이 120억원의 가치가 되어 왕처럼 살 수 있는 기회의 시작이기도 하다.     화려한 삶을 그리며 폴과 아내는 다운사이징을 선택하지만,  시술을 마친 폴은 아내가 가족의 곁을 떠나기 싫어  다운사이징 된 자신을 두고 도망갔다는 청천벽력 같은 소식을 듣게 된다.     커다란 저택, 경제적인 여유, 꿈꾸던 럭셔리 라이프를 살아가지만 이혼 후 모든 것이 무의미해져 버린 폴.  그리고 모든 꿈이 실현되리라 믿은 다운사이징 세상에서도 또 다른 위기가 그를 기다리는데…     과연 폴은 자신이 꿈꾸던 행복한 삶을 찾아갈 수 있을까?',15,'감독 : 알렉산더 페인  / 배우 :  맷 데이먼 ,  크리스토프 왈츠 ,  크리스틴 위그',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (138,'쏘아올린 불꽃, 밑에서 볼까 옆에서 볼까','6db846c1-4d5f-4c7a-ad0c-9a9d47235954.jpg','쏘아올린 불꽃, 밑에서 볼까 옆에서 볼까.jpg','https://www.youtube.com/embed/HjUhTg-hPHs',0,1,to_date('18/01/11','RR/MM/DD'),90,0,'애니메이션','첫사랑은 타이밍이다   불꽃축제를 앞둔 어느 바닷가 마을 아이들은 ‘불꽃은 옆에서 보면 둥글까? 납작할까?’라는 것에 대한 이야기로 떠들썩하지만 갑작스런 전학을 앞둔 나즈나는 마음이 복잡하다   우리 사랑의 도피를 떠나자 노리미치에게 둘이서 마을을 떠날 것을 제안하는 나즈나 하지만 어머니에게 발각된 나즈나는 집으로 끌려 들어가고 남겨진 노리미치는 나즈나가 간직하고 있던 구슬을 던져본다  만약, 그때 내가… 나즈나와의 즐거웠던 순간으로 되돌아간 노리미치 처음으로 나즈나와 단둘이 함께하기 위해, 마지막으로 나즈나에게 진심을 고백하기 위해 반복되는 하루를 몇 번이고 다시 겪게 되는데…   다시 불꽃이 터지면, 첫사랑도 이루어질까?',15,'감독 : 신보 아키유키  / 프로듀서 :  카와무라 겐키  / 배우 :  미야노 마모루 ,  히로세 스즈 ,  스다 마사키',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (141,'수면의 과학','111610c0-1dfb-4ef2-8d04-c9113e6ce5ba.jpg','수면의 과학.jpg','https://www.youtube.com/embed/dHtE0szIip0',0,0,to_date('18/01/11','RR/MM/DD'),106,0,'로맨스, 환타지, 코미디, 멜로','오늘은 꿈 속에서 그녀를 만날 수 있을까요?   삭막한 현실에서 벗어나 꿈 속에서 살고픈 드리밍 보이 ‘스테판’. 짝사랑하는 옆집 그녀 ‘스테파니’가 영혼의 짝이라 확신하지만, 그녀의 마음을 얻기란 꿈처럼 쉽지가 않은데…   꿈꾸는 모두를 위한 ‘스테판’의 Sweet Dream!  ',15,'감독 : 미셸 공드리  / 배우 :  가엘 가르시아 베르날 ,  샤를로트 갱스부르',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (144,'찰스 디킨스의 비밀 서재','8a7ce70b-63e0-444b-a741-2daa29dcbcf3.jpg','찰스 디킨스의 비밀 서재.jpg','https://www.youtube.com/embed/iErc5IQ5kZE',0,0,to_date('18/01/11','RR/MM/DD'),104,0,'드라마, 환타지','천재 소설가 찰스 디킨스, 그의 비밀 서재가 열린다!   세 권의 책이 연속으로 실패하고 슬럼프에 빠진 찰스 디킨스는 무턱대고 크리스마스 전까지 새로운 소설을 발표하겠다고 선언한다.   그에게 남은 시간은 고작 6주. 불현듯 ‘스크루지’라는 고약한 구두쇠 캐릭터를 떠올린 그의 눈 앞에 상상 속의 ‘스크루지’ 영감이 실제로 나타난다.   하지만 사사건건 방해를 놓는 ‘스크루지’ 때문에 소설은 마무리가 되지 않고 꼬여만 가는데…   과연 그는 6주 만에 새로운 소설을 완성시킬 수 있을까?',0,'감독 : 바랫 낼러리  / 배우 :  크리스토퍼 플러머 ,  댄 스티븐스 ,  조나단 프라이스',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (27,'강철비','3d8ba2dd-11f3-481b-8e12-16099a020e02.jpg','강철비.jpg','https://www.youtube.com/embed/4G8RU1y2Blc',2,2,to_date('17/12/14','RR/MM/DD'),140,0,'액션, 드라마','북한 쿠데타 발생  북한 1호가 남한으로 내려왔다!     쿠데타 발생 직후 최정예요원 ''엄철우''(정우성)는  치명상을 입은 북한 1호와 함께 남한으로 내려온다.  그 사이 북한은 대한민국과 미국을 상대로 선전포고를, 남한은 계엄령을 선포한다.  이때 북한 1호가 남한으로 내려왔다는 정보를 입수한 외교안보수석 ''곽철우''(곽도원)는  전쟁을 막기 위해 이들에게 긴밀한 접근을 시도하는데....',15,'감독 : 양우석  / 배우 : 정우성 ,  곽도원 ,  김갑수',10);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (145,'러빙 빈센트','231a3228-e6e3-422c-a500-68b735a5773f.jpg','러빙 빈센트.jpg','https://www.youtube.com/embed/hIOSBSCKD7k',0,0,to_date('17/11/09','RR/MM/DD'),95,0,'미스터리, 애니메이션','“당신은 그의 삶에 대해 무엇을 알죠?”     살아생전 단 한 점의 그림맊을 팔았던 화가 ‘빈센트’의 죽음 후 1년.  ‘아르망’은 그의 그림을 사랑했던 아버지의 부탁을 받고,  ‘빈센트’가 마지막으로 살았던 장소로 찾아가 미스터리한 죽음을 추적해 나간다.     ‘빈센트’를 그리워하는 여인 ''마르그리트''.  ‘빈센트’를 가장 가까운 곳에서 지켜봤던 ‘아들린’.  ‘빈센트’의 비밀을 알고 있는 닥터 ‘폴 가셰’.     ‘아르망’은 그들의 이야기를 듣고,  인간 ‘빈센트’에 대해 몰랐던 놀라운 사실들을 알게 되는데…',15,'감독 : 도로타 코비엘라 ,  휴 웰치맨  / 배우 :  시얼샤 로넌 ,  제롬 플린',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (146,'이터널 선샤인','2f5cdeb5-26e1-4d4f-b4a8-54b79fc2f414.jpg','이터널 선샤인.jpg','https://www.youtube.com/embed/lq91rkvpUzE',0,0,to_date('18/01/03','RR/MM/DD'),107,0,'로맨스, 멜로','사랑은 그렇게 다시 기억된다..     조엘은 아픈 기억만을 지워준다는 라쿠나사를 찾아가 헤어진 연인 클레멘타인의 기억을 지우기로 결심한다.  기억이 사라져 갈수록 조엘은 사랑이 시작되던 순간, 행복한 기억들, 가슴 속에 각인된 추억들을 지우기 싫어지기만 하는데...  당신을 지우면 이 아픔도 사라질까요?  사랑은 그렇게 다시 기억된다.',15,'감독 : 미셸 공드리  / 배우 :  짐 캐리 ,  케이트 윈슬렛 ,  커스틴 던스트 ,  마크 러팔로 ,  일라이저 우드',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (147,'몬스터 패밀리','e748b417-3202-4b52-b887-4074f1693b8b.jpg','몬스터 패밀리.jpg','https://www.youtube.com/embed/PchpYGnanz0',0,0,to_date('17/12/21','RR/MM/DD'),93,0,'애니메이션','“고독한 드라큘라의 수상한 프로젝트!  온 가족이 몬스터가 되어버렸다?!”     지루한 일상 속에 만나면 싸우기만 하는 ‘위시본’ 가족.  다 함께 시간을 보낸 게 무려 1년 9개월하고도 23일 전!     가족의 화합을 위해 할로윈 파티를 준비하던 엄마 ‘엠마’.  뱀파이어 이빨을 찾던 중 진짜 드라큘라와 전화연결이 되고  외로움에 사무치던 드라큘라의 음모로 순식간에 가족 모두가 몬스터로 변해버린다.     몬스터로 변한 외모 때문에 불편한 건 잠시, 인간일 때 보다 매력도, 파워도 UP!  신나고 버라이어티한 일들이 많아진 ‘위시본’ 가족은 고민에 빠지는데…!     인간일 때보다 더 짜릿한 몬스터 라이프!  과연 가족들은 다시 인간으로 돌아갈 수 있을까?',0,'감독 : 호거 태프  / 배우 :  에밀리 왓슨 ,  닉 프로스트',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (148,'더 큐어','f03558ca-d62a-4295-8e25-0305ed6cb637.jpg','더 큐어.jpg','https://www.youtube.com/embed/zUxSDmDgB58',0,0,to_date('17/02/15','RR/MM/DD'),146,0,'미스터리, 스릴러','<링>, <캐리비안의 해적> 고어 버빈스키 감독이 선보이는  새로운 미스터리 스릴러     야심 많은 젊은 간부 ‘록하트’는 의문의 편지를 남긴 채 떠나버린 CEO를 찾아 스위스 알프스에 위치한 ‘웰니스 센터’로 향한다.     고풍스러우면서 비밀스러운 기운이 느껴지는 ‘웰니스 센터’. ‘록하트’는 그곳의 특별한 치료법을 의심스럽게 여긴다.     예상치 못한 사고로 ‘웰니스 센터’에 머무르게 된 ‘록하트’는 그곳에서의 치료가 필요하다는 진단을 받게 되고, 비밀을 파헤치려 할수록 알 수 없는 일들이 벌어지는데…',20,'감독 : 고어 버빈스키  / 배우 :  데인 드한 ,  제이슨 아이삭스 ,  미아 고스 ,  셀리아 아임리',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (149,'닥터 스트레인지','f4eac160-c931-4c09-b780-e97d1925192c.jpg','닥터 스트레인지.jpg','https://www.youtube.com/embed/awyG1-xvqFY',0,0,to_date('16/10/26','RR/MM/DD'),115,0,'액션, 어드벤처, 환타지 ','모든 것을 초월한, 역사상 가장 강력한 히어로가 온다!     불의의 사고로 절망에 빠진 천재 외과의사 ‘닥터 스트레인지(베네딕트 컴버배치)’.  마지막 희망을 걸고 찾아 간 곳에서 ‘에인션트 원(틸다 스윈튼)’을 만나 세상을 구원할 강력한 능력을 얻게 되면서,  모든 것을 초월한 최강의 히어로로 거듭나는데...모든 것을 초월한, 역사상 가장 강력한 히어로가 온다!     불의의 사고로 절망에 빠진 천재 외과의사 ‘닥터 스트레인지(베네딕트 컴버배치)’.  마지막 희망을 걸고 찾아 간 곳에서 ‘에인션트 원(틸다 스윈튼)’을 만나 세상을 구원할 강력한 능력을 얻게 되면서,  모든 것을 초월한 최강의 히어로로 거듭나는데...',12,'감독 : 스콧 데릭슨  / 배우 :  베네딕트 컴버배치 ,  레이첼 맥아담스 ,  틸다 스윈튼 ,  매즈 미켈슨 ,  치웨텔 에지오포',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (150,'아가씨','a7659e38-61cc-45f0-99e1-3cbb035b264b.jpg','아가씨.jpg','https://www.youtube.com/embed/EdSxl4ICTmQ',0,0,to_date('16/06/01','RR/MM/DD'),145,0,'드라마, 스릴러','어릴 적 부모를 잃고 후견인 이모부(조진웅)의 엄격한 보호 아래 살아가는 귀족 아가씨(김민희).  그녀에게 백작이 추천한 새로운 하녀가 찾아온다.  매일 이모부의 서재에서 책을 읽는 것이 일상의 전부인 외로운 아가씨는  순박해 보이는 하녀에게 조금씩 의지하기 시작한다.     하지만 하녀의 정체는 유명한 여도둑의 딸로, 장물아비 손에서 자란 소매치기 고아 소녀 숙희(김태리).  막대한 재산을 상속받게 될 아가씨를 유혹하여 돈을 가로채겠다는 사기꾼 백작(하정우)의 제안을 받고  아가씨가 백작을 사랑하게 만들기 위해 하녀가 된 것.  드디어 백작이 등장하고, 백작과 숙희는 자신만의 방식으로 아가씨의 마음을 흔들기 시작하는데…     돈과 마음을 뺏기 위해 서로 속고 속이는  매혹적인 그들의 이야기가 시작된다!',20,'감독 : 박찬욱  / 배우 :  김민희 ,  김태리 ,  하정우 ,  조진웅 ,  김해숙 ,  문소리',20);
+Insert into CNEMA.MOVIE (MOVIE_NUM,MOVIE_NAME,FILENAME,ORINAME,TEASER_URL,RESERVE_RATE,WISH,OPEN_DATE,RUN_TIME,GRADE,TYPE,CONTENTS,AGE_LIMIT,ACTOR,SHOW) values (390,'그것만이 내 세상','47f41854-1b2c-4f0e-953e-40dcbc44f369.jpg','그것만이 내세상.jpg','https://www.youtube.com/embed/m-b2VBznlXI',0,0,to_date('18/01/17','RR/MM/DD'),120,0,'코미디, 드라마','한때는 WBC 웰터급 동양 챔피언이었지만 지금은 오갈 데 없어진 한물간 전직 복서 ''조하''(이병헌). 우연히 17년 만에 헤어진 엄마 ''인숙''(윤여정)과 재회하고, 숙식을 해결하기 위해 따라간 집에서 듣지도 보지도 못했던 뜻밖의 동생 ''진태''(박정민)와 마주한다.   난생처음 봤는데… 동생이라고?!   라면 끓이기, 게임도 최고로 잘하지만 무엇보다 피아노에 천재적 재능을 지닌 서번트증후군 진태. 조하는 입만 열면 "네~" 타령인 심상치 않은 동생을 보자 한숨부터 나온다. 하지만 캐나다로 가기 위한 경비를 마련하기 전까지만 꾹 참기로 결심한 조하는 결코 만만치 않은 불편한 동거생활을 하기 시작하는데…   살아온 곳도, 잘하는 일도, 좋아하는 것도 다른 두 형제가 만났다!',12,'감독 : 최성현  / 프로듀서 :  주승환  / 배우 :  이병헌 ,  윤여정 ,  박정민',10);
+
+
+
+  CREATE TABLE "CNEMA"."MYCOUPON" 
+   (	"NUM" NUMBER(8,0), 
+	"NAME" VARCHAR2(400 BYTE), 
+	"ID" VARCHAR2(400 BYTE), 
+	"V_DATE" DATE, 
+	"PUBLISH_DATE" DATE, 
+	"USE_DATE" DATE, 
+	"TYPE" NUMBER, 
+	"C_NUM" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."MYCOUPON"."NUM" IS 'coupon_seq';
+   COMMENT ON COLUMN "CNEMA"."MYCOUPON"."V_DATE" IS '쿠폰 만료일';
+   COMMENT ON COLUMN "CNEMA"."MYCOUPON"."PUBLISH_DATE" IS '쿠폰 발행일';
+   COMMENT ON COLUMN "CNEMA"."MYCOUPON"."USE_DATE" IS '쿠폰 사용일';
+   COMMENT ON COLUMN "CNEMA"."MYCOUPON"."TYPE" IS '11 : 사용가능 10 : 사용완료 12:기간만료';
+   COMMENT ON COLUMN "CNEMA"."MYCOUPON"."C_NUM" IS 'coupon_num';
+
+
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1713,'4000원할인쿠폰','ssin226',to_date('18/02/09','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1342);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1369,'10000원할인쿠폰','ssin226',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1370,'10000원할인쿠폰','sn1234',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1371,'10000원할인쿠폰','library_4',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1372,'10000원할인쿠폰','hjunhjun1',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1373,'10000원할인쿠폰','hsung0308',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1374,'10000원할인쿠폰','library_44',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1367,'10000원할인쿠폰','hjun1121',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1368,'10000원할인쿠폰','hsung0823',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1375,'10000원할인쿠폰','zxczxc',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1376,'10000원할인쿠폰','hsung0323',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1377,'10000원할인쿠폰','library_4',to_date('18/01/31','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1347);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1381,'3000원할인쿠폰','hjun1121',to_date('18/02/07','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1341);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1382,'4000원할인쿠폰','hjun1121',to_date('18/02/09','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1342);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1383,'5000원할인쿠폰','hjun1121',to_date('18/02/04','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1344);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1384,'10퍼센트할인쿠폰','hjun1121',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1349);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1385,'20퍼센트할인쿠폰','hjun1121',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1386,'20퍼센트할인쿠폰','hsung0823',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1387,'20퍼센트할인쿠폰','ssin226',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1388,'20퍼센트할인쿠폰','sn1234',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1389,'20퍼센트할인쿠폰','library_4',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1390,'20퍼센트할인쿠폰','hjunhjun1',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1391,'20퍼센트할인쿠폰','hsung0308',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1392,'20퍼센트할인쿠폰','library_44',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1393,'20퍼센트할인쿠폰','zxczxc',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1394,'20퍼센트할인쿠폰','hsung0323',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1395,'30퍼센트할인쿠폰','hjun1121',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1396,'30퍼센트할인쿠폰','hsung0823',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1397,'30퍼센트할인쿠폰','ssin226',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1398,'30퍼센트할인쿠폰','sn1234',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1399,'30퍼센트할인쿠폰','library_4',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1400,'30퍼센트할인쿠폰','hjunhjun1',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1401,'30퍼센트할인쿠폰','hsung0308',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1402,'30퍼센트할인쿠폰','library_44',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1403,'30퍼센트할인쿠폰','zxczxc',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1404,'30퍼센트할인쿠폰','hsung0323',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1405,'30퍼센트할인쿠폰','hjun1121',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1352);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1406,'6000원할인쿠폰','hjun1121',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1345);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1409,'9000원할인쿠폰','hjun1121',to_date('18/02/05','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1346);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1410,'20퍼센트할인쿠폰','hjun1121',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1350);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1411,'10퍼센트할인쿠폰','hjun1121',to_date('18/02/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1349);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1412,'2000원할인쿠폰','hjun1121',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1413,'2000원할인쿠폰','hsung0823',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1414,'2000원할인쿠폰','ssin226',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),10,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1415,'2000원할인쿠폰','sn1234',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1416,'2000원할인쿠폰','library_4',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1417,'2000원할인쿠폰','hjunhjun1',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1418,'2000원할인쿠폰','hsung0308',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1419,'2000원할인쿠폰','library_44',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1420,'2000원할인쿠폰','zxczxc',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+Insert into CNEMA.MYCOUPON (NUM,NAME,ID,V_DATE,PUBLISH_DATE,USE_DATE,TYPE,C_NUM) values (1421,'2000원할인쿠폰','hsung0323',to_date('18/02/06','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),null,11,1339);
+
+
+
+  CREATE TABLE "CNEMA"."NOTICE" 
+   (	"NUM" NUMBER(8,0), 
+	"TITLE" VARCHAR2(400 BYTE), 
+	"WRITER" VARCHAR2(400 BYTE), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"REG_DATE" DATE, 
+	"HIT" NUMBER(8,0), 
+	"FILENAME" VARCHAR2(400 BYTE), 
+	"ORINAME" VARCHAR2(400 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."NOTICE"."NUM" IS 'notice_seq';
+
+
+Insert into CNEMA.NOTICE (NUM,TITLE,WRITER,CONTENTS,REG_DATE,HIT,FILENAME,ORINAME) values (1597,'[[기타]] CNEMA고객센터 (1544-1122) 상담원 연결 운영 시간 조정','sn1234','<p><span style="font-family: 나눔고딕, NanumGothic; font-size: 9pt; background-color: rgb(253, 252, 240); color: rgb(102, 102, 102);">안녕하십니까. CGV입니다.</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);"><span style="font-size: 9pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;">CGV 고객센터(1544-1122) 상담원 연결 운영 시간이 2018년 3월 1일부터 조정됩니다.</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);"><span style="font-size: 9pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;"><span style="margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: NanumBarunGothicBold, sans-serif;">□ 조정 시기</span>&nbsp;: 2018년 3월 1일부터</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);"><span style="font-size: 9pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;">그 외 문의사항은 CGV 홈페이지/모바일 앱 內 공지사항 및 자주찾는 질문을 통해 확인 가능하며,</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);"><span style="font-size: 9pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;">이메일 문의에 글을 남겨주시면 빠른 시간 내 답변 드리겠습니다.</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);"><span style="font-size: 9pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;">이용에 참고 부탁 드립니다.</span></p><p><span style="color: rgb(102, 102, 102); font-size: 9pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;">감사합니다.</span><span style="background-color: rgb(253, 252, 240); color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif;">&nbsp;</span>&nbsp;</p>',to_date('18/01/30','RR/MM/DD'),1,'0','0');
+Insert into CNEMA.NOTICE (NUM,TITLE,WRITER,CONTENTS,REG_DATE,HIT,FILENAME,ORINAME) values (1598,'[[제휴이벤트]] 삼성페이 프로모션 선착순 종료 안내 件','sn1234','<p><span style="font-family: 나눔고딕, NanumGothic; font-size: 10pt; background-color: rgb(253, 252, 240); color: rgb(102, 102, 102);">안녕하십니까, CGV 입니다.</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);"><span style="font-size: 10pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;">삼성페이 프로모션으로 진행된 CGV콤보 4천원 할인이 선착순 25,000명&nbsp;종료되어 안내드립니다.</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);"><span style="font-size: 10pt; margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; word-break: break-all; font-family: 나눔고딕, NanumGothic;">?향후 더 좋은 프로모션으로 찾아뵙도록 하겠습니다.</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">&nbsp;</p><p><span style="font-family: 나눔고딕, NanumGothic; font-size: 10pt; background-color: rgb(253, 252, 240); color: rgb(102, 102, 102);">감사합니다.</span>&nbsp;</p>',to_date('18/01/30','RR/MM/DD'),0,'0','0');
+Insert into CNEMA.NOTICE (NUM,TITLE,WRITER,CONTENTS,REG_DATE,HIT,FILENAME,ORINAME) values (1606,'[[시스템점검]] 1월 정기 시스템 안내','sn1234','<p><span style="background-color: rgb(253, 252, 240); color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif;">안녕하십니까, CGV 입니다.&nbsp;</span></p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">원활하고 안정된 서비스 제공을 위하여 1월 16일(화) 새벽 시스템 점검 작업이 예정되어 있습니다.&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">점검 시간 중 CGV홈페이지 및 모바일의 모든 서비스가 중단될 예정이오니 이용에 불편 없으시기 바랍니다.&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">1. 일시</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">ㆍ2018년 1월 16일(화) 02:00~07:00 (5시간)&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">2. 내용</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">- 정기 PM작업(시스템 성능 개선 작업)&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">- 작업 대상 : 극장영업시스템, 온라인 서비스(홈페이지/모바일)&nbsp;&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">&nbsp;</p><p style="border: 0px; vertical-align: baseline; word-break: break-all; min-height: 24px; color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif; background-color: rgb(253, 252, 240);">더욱 안정적이고 편리한 서비스를 제공하는 CGV가 되겠습니다.</p><p><span style="background-color: rgb(253, 252, 240); color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif;">감사합니다.&nbsp;</span>&nbsp;</p>',to_date('18/01/30','RR/MM/DD'),0,'0','0');
+Insert into CNEMA.NOTICE (NUM,TITLE,WRITER,CONTENTS,REG_DATE,HIT,FILENAME,ORINAME) values (1617,'[[기타]] CNEMA 이용약관 개정안내','sn1234','<p>안녕하십니까. CGV입니다.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>CGV 이용약관이 2018년 3월 15일부터 변경됩니다.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>이번 약관 개정은 영리 목적의 재판매행위를 제한하여 선의의 고객 피해를 방지하고</p><p>&nbsp;</p><p>일부 조항을 보다 명확하게 하기 위한 개정 조치입니다.</p><p>&nbsp;</p><p>※ 관람 편의를 위한 단순 취소 변경(시간, 장소, 결제방식 등)의 경우 영리 목적의 재판매행위에 해당하지 않습니다.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>자세한 내용은 아래 개정 내용을 참고하시기 바랍니다.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>변경 약관에 동의하지 않으실 경우 약관철회(회원탈퇴)를 하실 수 있으며,</p><p>&nbsp;</p><p>거부의사를 표시하지 않으신 경우 개정 이용약관에 동의하신 것으로 간주합니다.</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>감사합니다.?&nbsp;</p>',to_date('18/01/30','RR/MM/DD'),0,'0','0');
+Insert into CNEMA.NOTICE (NUM,TITLE,WRITER,CONTENTS,REG_DATE,HIT,FILENAME,ORINAME) values (1619,'[[기타]] iOS10 업그레이드 시','sn1234','<p><span style="background-color: rgb(253, 252, 240); color: rgb(102, 102, 102); font-family: NanumBarunGothic, &quot;맑은 고딕&quot;, 돋움, Dotum, sans-serif;">안녕하세요. CGV입니다. 현재 iOS 10으로 아이폰 OS를 업그레이드하실 경우 아이폰 OS정책 변경에 따라 "카카오페이"를 이용한 결제 서비스 이용이 어렵습니다. 최대한 빠르게 복구될 수 있도록 조치할 예정이오니 이용에 참고 부탁드립니다. CGV 서비스 이용에 불편을 드리게 된 점 양해 부탁드립니다. 감사합니다.</span></p><p>&nbsp;</p>',to_date('18/01/30','RR/MM/DD'),1,'0','0');
+
+
+  CREATE TABLE "CNEMA"."PAGE" 
+   (	"PAGE_NUM" NUMBER(8,0), 
+	"PAGE_NAME" VARCHAR2(400 BYTE), 
+	"FILENAME" VARCHAR2(400 BYTE), 
+	"ORINAME" VARCHAR2(400 BYTE), 
+	"REG_DATE" DATE, 
+	"MEMBER_COUNT" NUMBER(8,0), 
+	"OWNER_ID" VARCHAR2(400 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."PAGE"."PAGE_NUM" IS 'page_seq';
+   COMMENT ON COLUMN "CNEMA"."PAGE"."PAGE_NAME" IS '페이지 명';
+   COMMENT ON COLUMN "CNEMA"."PAGE"."FILENAME" IS '커버사진';
+   COMMENT ON COLUMN "CNEMA"."PAGE"."REG_DATE" IS '생성날짜';
+   COMMENT ON COLUMN "CNEMA"."PAGE"."MEMBER_COUNT" IS '구독자 수';
+   COMMENT ON COLUMN "CNEMA"."PAGE"."OWNER_ID" IS '페이지 생성자 id';
+
+
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1487,'쥬라기월드','15c965f7-58c8-4120-adbf-4a9283f3500b.jpg','쥬라기월드.jpg',to_date('18/01/30','RR/MM/DD'),1,'hyun0226');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1493,'애니애니','b5f91dfd-da4b-45d5-9cad-9bd0e4b63d5c.jpg','애니애니.jpg',to_date('18/01/30','RR/MM/DD'),4,'min1994');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1473,'인생은 아름다워','8d4c22ef-63f9-45bd-b114-26b5c4f1b68d.jpg','인생은 아름다워.jpg',to_date('18/01/30','RR/MM/DD'),2,'hyun0226');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1429,'멜로망스','47661801-277e-403b-bbd7-2fe2d6db835c.JPG','멜로망스.JPG',to_date('18/01/30','RR/MM/DD'),4,'ssin226');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1379,'출발! 비디오여행','a4758700-0c77-49b3-962c-ec80cb0ec19e.jpg','비디오여행.jpg',to_date('18/01/30','RR/MM/DD'),2,'ssin226');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1407,'청소년 관람불가','62f63451-1255-48d2-bb99-cb004a486610.jpg','청불.jpg',to_date('18/01/30','RR/MM/DD'),8,'ssin226');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1431,'SF/판타지','5f5551af-0a7d-467c-ab6a-7f4feeaf3614.jpg','sf판타지.jpg',to_date('18/01/30','RR/MM/DD'),4,'ssin226');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1447,'액션스쿨','06a222de-0eb7-469e-9fe1-abad15f37b3b.jpg','액션이좋아.jpg',to_date('18/01/30','RR/MM/DD'),3,'ssin226');
+Insert into CNEMA.PAGE (PAGE_NUM,PAGE_NAME,FILENAME,ORINAME,REG_DATE,MEMBER_COUNT,OWNER_ID) values (1519,'영사모','a9d21894-e7fd-4c1f-bf1b-cb9caa367a97.jpg','영사모.jpg',to_date('18/01/30','RR/MM/DD'),3,'min1994');
+
+
+  CREATE TABLE "CNEMA"."PAGECONTENTS" 
+   (	"CONTENTS_NUM" NUMBER(8,0), 
+	"PAGE_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(400 BYTE), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"REG_DATE" DATE, 
+	"FILENAME" VARCHAR2(400 BYTE), 
+	"ORINAME" VARCHAR2(400 BYTE), 
+	"HIT" NUMBER(8,0), 
+	"WARNING" NUMBER(8,0), 
+	"REF" NUMBER(8,0), 
+	"STEP" NUMBER(8,0), 
+	"DEPT" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."PAGECONTENTS"."CONTENTS_NUM" IS 'contents_seq';
+   COMMENT ON COLUMN "CNEMA"."PAGECONTENTS"."ID" IS '작성자';
+   COMMENT ON COLUMN "CNEMA"."PAGECONTENTS"."CONTENTS" IS '글 내용';
+   COMMENT ON COLUMN "CNEMA"."PAGECONTENTS"."HIT" IS '좋아요';
+   COMMENT ON COLUMN "CNEMA"."PAGECONTENTS"."WARNING" IS '신고 갯수';
+   COMMENT ON COLUMN "CNEMA"."PAGECONTENTS"."REF" IS '원본글 넘버';
+   COMMENT ON COLUMN "CNEMA"."PAGECONTENTS"."STEP" IS '댓글 넘버';
+   COMMENT ON TABLE "CNEMA"."PAGECONTENTS"  IS '페이지 게시글';
+
+
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1733,1493,'ssin226','<p>안녕하세요</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1734,1493,'ssin226','ㅎㅇㅎㅇ',to_date('18/01/30','RR/MM/DD'),null,null,0,0,1733,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1675,1493,'gs1234','좋아요',to_date('18/01/30','RR/MM/DD'),null,null,0,0,1653,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1676,1493,'ssin226','애니메이션 추천 해주세요',to_date('18/01/30','RR/MM/DD'),null,null,0,0,1653,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1653,1493,'library_44','<p>안녕하세요^^ 애니애니 정말 좋아요~</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1657,1407,'library_44','<p>청불 제가 증말 좋아합니다 껄껄</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1711,1493,'ssin226','<p style="margin-left: 40px;">미니언즈 노래 알려주세요</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1698,1407,'shin226','<p style="margin-left: 40px;">안녕하세요</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1704,1407,'shin226','프로필 사진이 없네요?',to_date('18/01/30','RR/MM/DD'),null,null,0,0,1698,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1712,1493,'min1994','<p>안녕하세요 ^^</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1714,1493,'ssin226','<p>안녕하세요~?</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1715,1379,'ssin226','<p>1</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1716,1379,'ssin226','<p>2</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1717,1379,'ssin226','<p>3</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1718,1379,'ssin226','<p>4</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1719,1379,'ssin226','<p>5</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1720,1379,'ssin226','<p>6</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+Insert into CNEMA.PAGECONTENTS (CONTENTS_NUM,PAGE_NUM,ID,CONTENTS,REG_DATE,FILENAME,ORINAME,HIT,WARNING,REF,STEP,DEPT) values (1721,1379,'ssin226','<p>7</p>',to_date('18/01/30','RR/MM/DD'),null,null,0,0,0,0,0);
+
+
+  CREATE TABLE "CNEMA"."PAGEMEMBER" 
+   (	"MEMBER_NUM" NUMBER(8,0), 
+	"PAGE_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(400 BYTE), 
+	"REG_DATE" DATE, 
+	"TYPE" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."PAGEMEMBER"."MEMBER_NUM" IS 'pmember_seq';
+   COMMENT ON COLUMN "CNEMA"."PAGEMEMBER"."PAGE_NUM" IS '페이지 번호';
+   COMMENT ON COLUMN "CNEMA"."PAGEMEMBER"."ID" IS '가입자 id';
+   COMMENT ON COLUMN "CNEMA"."PAGEMEMBER"."REG_DATE" IS '가입날짜';
+   COMMENT ON COLUMN "CNEMA"."PAGEMEMBER"."TYPE" IS '그룹장:20 / 회원: 11';
+
+
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1476,1447,'hjun1121',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1477,1431,'hjun1121',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1478,1429,'hjun1121',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1479,1473,'hjun1121',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1486,1379,'hjun1121',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1474,1473,'hyun0226',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1475,1407,'hjun1121',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1488,1487,'hyun0226',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1494,1493,'min1994',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1654,1407,'min1994',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1655,1493,'ssin226',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1656,1407,'library_44',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1674,1493,'gs1234',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1692,1519,'sn1234',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1693,1429,'sn1234',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1697,1407,'shin226',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1708,1519,'library_4',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1709,1431,'library_4',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1710,1407,'library_4',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1408,1407,'ssin226',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1380,1379,'ssin226',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1430,1429,'ssin226',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1432,1431,'ssin226',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1448,1447,'ssin226',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1449,1407,'hsung0823',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1453,1429,'hsung0823',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1451,1431,'hsung0823',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1452,1447,'hsung0823',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1520,1519,'min1994',to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1651,1407,'hyun0226',to_date('18/01/30','RR/MM/DD'),11);
+Insert into CNEMA.PAGEMEMBER (MEMBER_NUM,PAGE_NUM,ID,REG_DATE,TYPE) values (1652,1493,'library_44',to_date('18/01/30','RR/MM/DD'),11);
+
+
+  CREATE TABLE "CNEMA"."POINT" 
+   (	"POINT_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(20 BYTE), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"POINT_PRICE" NUMBER, 
+	"USE_DAY" DATE, 
+	"TYPE" NUMBER
+   );
+
+   COMMENT ON COLUMN "CNEMA"."POINT"."CONTENTS" IS '적립내용
+';
+   COMMENT ON COLUMN "CNEMA"."POINT"."POINT_PRICE" IS '적립/사용일';
+   COMMENT ON COLUMN "CNEMA"."POINT"."USE_DAY" IS '사용날
+';
+   COMMENT ON COLUMN "CNEMA"."POINT"."TYPE" IS '20:적립 / 12: 사용
+';
+
+
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1730,'hjun1121','0',5000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1731,'hsung0823','0',5000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1691,'hjun1121','영화 구매 사용',5000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1727,'ssin226','영화 구매 사용',10000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1562,'min1994','영화 구매 사용',8000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1565,'library_4','영화 구매 사용',8000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1574,'min1994','영화 구매 사용',8000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1539,'hyun0226','0',100000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1540,'min1994','0',100000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1577,'library_4','영화 구매 사용',8000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1596,'hyun0226','영화 구매 사용',16000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1620,'ssin226','0',100000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1623,'ssin226','영화 구매 사용',6000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1628,'ssin226','영화 구매 사용',7000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1632,'ssin226','영화 구매 사용',16000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1665,'hjun1121','영화 구매 사용',33600,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1666,'hjun1121','0',50000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1669,'hjun1121','영화 구매 사용',4000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1673,'hjun1121','영화 구매 사용',16000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1678,'hjunhjun1','0',50000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1679,'zxczxc','0',20000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1682,'zxczxc','영화 구매 사용',8000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1687,'hjunhjun1','영화 구매 사용',8000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1696,'hjun1121','영화 구매 사용',7200,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1701,'hjun1121','영화 구매 사용',2000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1378,'hjun1121','0',50000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1549,'min1994','영화 구매 사용',8000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1550,'library_4','0',50000,to_date('18/01/30','RR/MM/DD'),20);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1555,'min1994','영화 구매 사용',16000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1610,'hyun0226','영화 구매 사용',16000,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.POINT (POINT_NUM,ID,CONTENTS,POINT_PRICE,USE_DAY,TYPE) values (1650,'hjun1121','영화 구매 사용',15000,to_date('18/01/30','RR/MM/DD'),10);
+
+
+  CREATE TABLE "CNEMA"."QNA" 
+   (	"NUM" NUMBER(8,0), 
+	"AREA" VARCHAR2(20 BYTE), 
+	"LOCATION" VARCHAR2(20 BYTE), 
+	"TYPE" VARCHAR2(400 BYTE), 
+	"TITLE" VARCHAR2(400 BYTE), 
+	"WRITER" VARCHAR2(400 BYTE), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"REG_DATE" DATE, 
+	"FILENAME" VARCHAR2(400 BYTE), 
+	"ORINAME" VARCHAR2(400 BYTE), 
+	"REPLY" VARCHAR2(4000 BYTE), 
+	"REPLY_ID" VARCHAR2(400 BYTE), 
+	"REPLY_DATE" DATE, 
+	"EMAIL" VARCHAR2(400 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."QNA"."NUM" IS 'qna_seq';
+   COMMENT ON COLUMN "CNEMA"."QNA"."AREA" IS '지역명';
+   COMMENT ON COLUMN "CNEMA"."QNA"."LOCATION" IS '지점명';
+   COMMENT ON COLUMN "CNEMA"."QNA"."TYPE" IS '문의 유형';
+   COMMENT ON COLUMN "CNEMA"."QNA"."REPLY" IS '답변 내용';
+   COMMENT ON COLUMN "CNEMA"."QNA"."REPLY_ID" IS '답변 관리자 id';
+   COMMENT ON COLUMN "CNEMA"."QNA"."REPLY_DATE" IS '답변 등록일';
+   COMMENT ON COLUMN "CNEMA"."QNA"."EMAIL" IS '보낼 답변 메일';
+
+
+Insert into CNEMA.QNA (NUM,AREA,LOCATION,TYPE,TITLE,WRITER,CONTENTS,REG_DATE,FILENAME,ORINAME,REPLY,REPLY_ID,REPLY_DATE,EMAIL) values (1732,'서울','강남','칭찬','칭찬합니다','ssin226','칭찬이에요',to_date('18/01/30','RR/MM/DD'),'noFile','noFile',null,null,null,'library_4@naver.com');
+Insert into CNEMA.QNA (NUM,AREA,LOCATION,TYPE,TITLE,WRITER,CONTENTS,REG_DATE,FILENAME,ORINAME,REPLY,REPLY_ID,REPLY_DATE,EMAIL) values (1624,'서울','강남','불만','팝콘이 너무 눅눅해요','library_44','바삭한 팝콘이 먹고 싶어요',to_date('18/01/30','RR/MM/DD'),'noFile','noFile',null,null,null,'library_4@naver.com');
+Insert into CNEMA.QNA (NUM,AREA,LOCATION,TYPE,TITLE,WRITER,CONTENTS,REG_DATE,FILENAME,ORINAME,REPLY,REPLY_ID,REPLY_DATE,EMAIL) values (1705,'서울','강남','문의','강남점 문의 드립니다','hjun1121','강남점 위치 문의 드립니다.',to_date('18/01/30','RR/MM/DD'),'noFile','noFile',null,null,null,'library_4@naver.com');
+Insert into CNEMA.QNA (NUM,AREA,LOCATION,TYPE,TITLE,WRITER,CONTENTS,REG_DATE,FILENAME,ORINAME,REPLY,REPLY_ID,REPLY_DATE,EMAIL) values (1706,'강원','춘천','칭찬','직원분들을 칭찬합니다.','hjun1121','1관 담당하던 직원분을 칭찬합니다',to_date('18/01/30','RR/MM/DD'),'noFile','noFile',null,null,null,'library_4@naver.com');
+Insert into CNEMA.QNA (NUM,AREA,LOCATION,TYPE,TITLE,WRITER,CONTENTS,REG_DATE,FILENAME,ORINAME,REPLY,REPLY_ID,REPLY_DATE,EMAIL) values (1707,'서울','홍대','제안','스피커위치를 바꾸어주세요','hjun1121','스피커가 너무 낮아서 불편합니다 위치를 바꾸는게 나을거같습니다.',to_date('18/01/30','RR/MM/DD'),'noFile','noFile','죄송합니다.','ssin226',to_date('18/01/30','RR/MM/DD'),'library_4@naver.com');
+Insert into CNEMA.QNA (NUM,AREA,LOCATION,TYPE,TITLE,WRITER,CONTENTS,REG_DATE,FILENAME,ORINAME,REPLY,REPLY_ID,REPLY_DATE,EMAIL) values (1611,'서울','강남','문의','좌석이 깨끗한가요?','library_4','네에~?',to_date('18/01/30','RR/MM/DD'),'noFile','noFile','네 깨끗합니다!','library_4',to_date('18/01/30','RR/MM/DD'),'library_4@naver.com');
+Insert into CNEMA.QNA (NUM,AREA,LOCATION,TYPE,TITLE,WRITER,CONTENTS,REG_DATE,FILENAME,ORINAME,REPLY,REPLY_ID,REPLY_DATE,EMAIL) values (1618,'서울','강남','문의','음료에 머리카락이 나왔어요','ssin226','어떻게 배상하실거죠?',to_date('18/01/30','RR/MM/DD'),'607248fa-6871-4df7-8b01-c29e116865d9.jpg','머리카락문의.jpg',null,null,null,'library_4@naver.com');
+
+
+  CREATE TABLE "CNEMA"."RESERVE" 
+   (	"RESERVE_NUM" NUMBER(8,0), 
+	"THEATER_NUM" NUMBER(8,0), 
+	"SCREEN_NUM" NUMBER(8,0), 
+	"SCHEDULE_NUM" NUMBER(8,0), 
+	"SEAT_NUM" NUMBER(8,0), 
+	"MOVIE_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(400 BYTE), 
+	"TP_NUM" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."RESERVE_NUM" IS 'reserve_seq';
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."THEATER_NUM" IS '영화관 지점';
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."SCREEN_NUM" IS '상영관 번호';
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."SCHEDULE_NUM" IS '상영시간표 번호';
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."SEAT_NUM" IS '좌석 번호';
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."MOVIE_NUM" IS '영화 정보';
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."ID" IS '예약자 id';
+   COMMENT ON COLUMN "CNEMA"."RESERVE"."TP_NUM" IS '티켓가격관련 번호';
+
+
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1726,1256,1285,1441,10,2,'ssin226',1724);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1690,1261,1330,1640,2,2,'hjun1121',1689);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1725,1256,1285,1441,11,2,'ssin226',1724);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1573,1256,1285,1441,9,2,'min1994',1572);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1576,1256,1285,1440,6,2,'library_4',1575);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1594,1256,1285,1440,8,2,'hyun0226',1593);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1595,1256,1285,1440,9,2,'hyun0226',1593);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1622,1256,1285,1440,13,2,'ssin226',1621);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1626,1256,1316,1463,3,388,'ssin226',1625);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1627,1256,1316,1463,9,388,'ssin226',1625);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1630,1261,1330,1601,10,388,'ssin226',1629);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1631,1261,1330,1601,11,388,'ssin226',1629);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1659,1256,1316,1462,7,388,'hjun1121',1658);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1561,1248,1307,1498,28,389,'min1994',1560);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1564,1256,1319,1470,21,389,'library_4',1563);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1660,1256,1316,1462,8,388,'hjun1121',1658);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1661,1256,1316,1462,9,388,'hjun1121',1658);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1662,1256,1316,1462,10,388,'hjun1121',1658);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1663,1256,1316,1462,11,388,'hjun1121',1658);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1664,1256,1316,1462,12,388,'hjun1121',1658);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1668,1256,1323,1489,1,2,'hjun1121',1667);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1671,1256,1285,1502,8,2,'hjun1121',1670);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1672,1256,1285,1502,9,2,'hjun1121',1670);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1681,1256,1285,1440,15,2,'zxczxc',1680);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1686,1256,1285,1440,14,2,'hjunhjun1',1685);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1695,1256,1323,1491,23,2,'hjun1121',1694);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1700,1248,1283,1436,1,2,'hjun1121',1699);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1554,1256,1319,1470,2,389,'min1994',1552);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1608,1256,1319,1471,8,389,'hyun0226',1607);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1609,1256,1319,1471,15,389,'hyun0226',1607);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1647,1256,1323,1491,24,2,'hjun1121',1646);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1648,1256,1323,1491,25,2,'hjun1121',1646);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1649,1256,1323,1491,26,2,'hjun1121',1646);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1548,1256,1316,1462,2,388,'min1994',1547);
+Insert into CNEMA.RESERVE (RESERVE_NUM,THEATER_NUM,SCREEN_NUM,SCHEDULE_NUM,SEAT_NUM,MOVIE_NUM,ID,TP_NUM) values (1553,1256,1319,1470,1,389,'min1994',1552);
+
+
+  CREATE TABLE "CNEMA"."REVIEW" 
+   (	"REVIEW_NUM" NUMBER(8,0), 
+	"MOVIE_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(400 BYTE), 
+	"CONTENTS" VARCHAR2(4000 BYTE), 
+	"WARNING" NUMBER(8,0), 
+	"HIT" NUMBER(8,0), 
+	"REG_DATE" DATE, 
+	"R_TYPE" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."REVIEW"."REVIEW_NUM" IS 'review_seq';
+   COMMENT ON COLUMN "CNEMA"."REVIEW"."MOVIE_NUM" IS '영화 정보';
+   COMMENT ON COLUMN "CNEMA"."REVIEW"."WARNING" IS '리뷰 신고 갯수';
+   COMMENT ON COLUMN "CNEMA"."REVIEW"."HIT" IS '리뷰 좋아요 갯수';
+   COMMENT ON COLUMN "CNEMA"."REVIEW"."REG_DATE" IS '리뷰 등록일';
+
+
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1582,2,'min1994','원작과 좀 다른 영화였습니다 :)',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1566,389,'min1994','좋았어요~^^',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1567,389,'library_4','영화가 너무 좋았어요^^',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1583,2,'library_4','흠~좀 별로였어요;;;
+억지감동',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1633,2,'ssin226','너무 심한 판타지 말도안돼여',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1634,388,'ssin226','역시 애니메이션은 재미가 없을수가 없어여',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1683,2,'zxczxc','후속작 기대됩니다!',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1688,2,'hjunhjun1','좋았어요~^^',0,0,to_date('18/01/30','RR/MM/DD'),10);
+Insert into CNEMA.REVIEW (REVIEW_NUM,MOVIE_NUM,ID,CONTENTS,WARNING,HIT,REG_DATE,R_TYPE) values (1605,2,'hyun0226','여기저기서 다같이 울었어요
+감동적이었습니당 ^_^',1,0,to_date('18/01/30','RR/MM/DD'),10);
+
+
+ CREATE TABLE "CNEMA"."SCHEDULE" 
+   (	"SCHEDULE_NUM" NUMBER(8,0), 
+	"SCREEN_NUM" NUMBER(8,0), 
+	"MOVIE_NUM" NUMBER(8,0), 
+	"IN_TIME" DATE, 
+	"OUT_TIME" DATE, 
+	"DAY" DATE, 
+	"THEATER_NUM" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."SCHEDULE"."SCHEDULE_NUM" IS 'schedule_seq';
+   COMMENT ON COLUMN "CNEMA"."SCHEDULE"."SCREEN_NUM" IS '상영관 번호';
+   COMMENT ON COLUMN "CNEMA"."SCHEDULE"."MOVIE_NUM" IS '영화 번호';
+   COMMENT ON COLUMN "CNEMA"."SCHEDULE"."IN_TIME" IS '상영시작 시간';
+   COMMENT ON COLUMN "CNEMA"."SCHEDULE"."OUT_TIME" IS '상영종료 시간';
+   COMMENT ON COLUMN "CNEMA"."SCHEDULE"."DAY" IS '상영 날짜';
+   COMMENT ON COLUMN "CNEMA"."SCHEDULE"."THEATER_NUM" IS '극장번호';
+   COMMENT ON TABLE "CNEMA"."SCHEDULE"  IS '상영시간표';
+
+
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1469,1319,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1470,1319,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1471,1319,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1472,1319,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1480,1307,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1481,1307,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1482,1307,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1483,1307,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1484,1307,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1485,1307,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1489,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1490,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1491,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1496,1307,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1497,1307,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1498,1307,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1499,1307,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1500,1307,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1501,1307,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1502,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1503,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1504,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1505,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1506,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1507,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1508,1289,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1259);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1509,1289,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1259);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1510,1289,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1259);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1511,1289,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1259);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1512,1289,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1259);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1513,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1514,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1515,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1516,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1517,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1518,1323,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1524,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1525,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1526,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1527,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1528,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1556,1324,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1557,1324,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1558,1324,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1559,1324,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1578,1299,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1579,1299,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1580,1299,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1581,1299,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1599,1330,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1600,1330,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1601,1330,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1602,1330,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1603,1330,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1604,1330,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1640,1330,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1641,1330,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1642,1330,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1643,1330,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1644,1330,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1645,1330,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1433,1283,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1434,1283,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1435,1283,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1436,1283,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1437,1283,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1438,1283,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1439,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1440,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1441,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1442,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1443,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1444,1283,27,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1445,1283,27,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1446,1283,27,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1454,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1455,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1456,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1457,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1458,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1459,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1460,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1461,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1462,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1463,1316,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1464,1307,22,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1465,1307,22,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1466,1307,22,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1467,1307,22,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1492,1293,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/31','RR/MM/DD'),1251);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1531,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1532,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1533,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1534,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1535,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1536,1307,388,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1248);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1542,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/02/01','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1543,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/02/01','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1544,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/02/01','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1545,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/02/01','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1546,1285,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/02/01','RR/MM/DD'),1256);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1588,1328,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1589,1328,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1590,1328,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1591,1328,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1592,1328,2,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1612,1330,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1613,1330,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1614,1330,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1615,1330,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+Insert into CNEMA.SCHEDULE (SCHEDULE_NUM,SCREEN_NUM,MOVIE_NUM,IN_TIME,OUT_TIME,DAY,THEATER_NUM) values (1616,1330,389,to_date('18/01/01','RR/MM/DD'),to_date('18/01/01','RR/MM/DD'),to_date('18/01/30','RR/MM/DD'),1261);
+
+
+
+  CREATE TABLE "CNEMA"."SCREEN" 
+   (	"SCREEN_NUM" NUMBER(8,0), 
+	"THEATER_NUM" NUMBER(8,0), 
+	"ROOM_NUM" NUMBER(8,0), 
+	"FLOOR" NUMBER(8,0), 
+	"X_NUM" NUMBER(8,0), 
+	"Y_NUM" NUMBER(8,0)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."SCREEN"."SCREEN_NUM" IS '상영관 번호 seq';
+   COMMENT ON COLUMN "CNEMA"."SCREEN"."ROOM_NUM" IS '몇번상영관';
+   COMMENT ON COLUMN "CNEMA"."SCREEN"."FLOOR" IS '층';
+   COMMENT ON COLUMN "CNEMA"."SCREEN"."X_NUM" IS '한줄이면0 두줄이면1';
+   COMMENT ON COLUMN "CNEMA"."SCREEN"."Y_NUM" IS '3';
+   COMMENT ON TABLE "CNEMA"."SCREEN"  IS '상영관';
+
+
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1283,1248,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1284,1246,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1285,1256,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1286,1247,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1287,1257,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1288,1258,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1289,1259,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1290,1249,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1291,1250,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1292,1276,1,1,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1293,1251,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1294,1266,1,5,6,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1295,1252,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1296,1266,2,5,7,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1297,1253,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1298,1277,1,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1299,1261,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1300,1254,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1301,1262,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1302,1255,1,1,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1303,1266,3,5,7,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1304,1263,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1305,1276,2,1,7,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1306,1266,4,6,5,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1307,1248,2,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1308,1265,1,1,2,3);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1309,1246,2,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1310,1276,3,2,9,9);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1311,1264,2,2,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1312,1266,5,6,8,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1313,1247,2,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1314,1282,1,1,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1315,1253,2,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1316,1256,2,2,5,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1317,1249,2,2,8,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1318,1275,1,2,6,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1319,1256,3,3,6,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1320,1282,2,1,9,9);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1321,1275,2,2,7,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1322,1250,2,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1323,1256,4,4,7,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1324,1256,5,6,7,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1325,1282,3,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1326,1254,2,2,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1327,1275,3,3,8,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1328,1261,2,2,5,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1329,1275,4,3,8,7);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1330,1261,3,3,8,8);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1331,1254,3,2,8,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1332,1282,4,2,8,9);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1333,1261,4,4,8,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1334,1275,5,4,6,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1335,1253,2,3,8,6);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1336,1261,5,7,7,5);
+Insert into CNEMA.SCREEN (SCREEN_NUM,THEATER_NUM,ROOM_NUM,FLOOR,X_NUM,Y_NUM) values (1337,1278,1,1,9,9);
+
+
+ CREATE TABLE "CNEMA"."THEATER" 
+   (	"THEATER_NUM" NUMBER(8,0), 
+	"AREA" VARCHAR2(400 BYTE), 
+	"LOCATION" VARCHAR2(400 BYTE), 
+	"X_POSITION" NUMBER(10,7), 
+	"Y_POSITION" NUMBER(10,7)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."THEATER"."THEATER_NUM" IS 'theater_seq';
+   COMMENT ON COLUMN "CNEMA"."THEATER"."AREA" IS '지역(경기, 서울 ...)';
+   COMMENT ON COLUMN "CNEMA"."THEATER"."LOCATION" IS '지점(강남, 잠실 ...)';
+   COMMENT ON COLUMN "CNEMA"."THEATER"."X_POSITION" IS '위도';
+   COMMENT ON COLUMN "CNEMA"."THEATER"."Y_POSITION" IS '경도';
+   COMMENT ON TABLE "CNEMA"."THEATER"  IS '영화관 지점';
+
+
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1248,'인천','인천공항',37.44799,126.452276);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1246,'경기','수원',37.2656822,126.9981197);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1247,'경기','시흥',37.265677,126.965289);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1249,'경기','오리',37.340792,127.106929);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1250,'경기','북수원',37.3035629,127.0053154);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1251,'인천','주안역',37.465718,126.680478);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1252,'강원','강릉',37.755678,128.898638);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1253,'경기','용인',37.2565572,127.1436477);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1254,'경기','부천',37.5042124,126.7566156);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1255,'강원','원주',37.344654,127.930539);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1256,'서울','강남',37.502476,127.026308);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1257,'경기','소풍',37.5039316,126.7545489);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1258,'경기','판교',37.3931348,127.1098031);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1259,'인천','계양',37.534115,126.734408);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1260,'강원','춘천',37.85037,127.743902);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1261,'서울','강동',37.528635,127.125307);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1262,'강원','춘천명동',37.877788,127.728465);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1263,'광주/전라/제주','목포',34.8025017,126.4177623);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1264,'경기','화정',37.6357182,126.8309651);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1265,'서울','강변',37.536005,127.095649);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1266,'인천','연수역',37.418119,126.677181);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1267,'경기','평택소사',37.0004968,127.1091419);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1268,'광주/전라/제주','광주터미널',35.1683819,126.8464239);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1269,'대구','대구',35.87122,128.59488);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1270,'경기','평촌',37.3930002,126.9600982);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1271,'광주/전라/제주','제주',33.5001014,126.5251437);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1272,'인천','인천논현',37.402463,126.708646);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1273,'대구','대구수성',35.831711,128.687151);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1274,'경상','거제',34.8910524,128.6143978);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1275,'서울','홍대',37.5564447,126.9204164);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1276,'경상','포항',36.0267498,129.3410827);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1277,'대구','대구스타디움',35.831708,128.687164);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1278,'서울','목동',37.5265465,126.8726493);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1279,'경상','진주',35.163753,128.1051797);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1280,'서울','건대입구',37.5319034,127.025892);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1281,'경상','안동',36.5611616,128.7471166);
+Insert into CNEMA.THEATER (THEATER_NUM,AREA,LOCATION,X_POSITION,Y_POSITION) values (1282,'서울','송파',37.477368,127.125501);
+
+
+ CREATE TABLE "CNEMA"."TICKETPRICE" 
+   (	"TP_NUM" NUMBER(8,0), 
+	"PEOPLE" NUMBER(8,0), 
+	"ADULT_NUM" NUMBER(8,0), 
+	"TEEN_NUM" NUMBER(8,0), 
+	"TOTAL_PRICE" NUMBER(8,0), 
+	"C_NUM" NUMBER(8,0), 
+	"POINT" NUMBER(8,0), 
+	"PRICE" NUMBER(8,0), 
+	"CODE" VARCHAR2(400 BYTE), 
+	"REG_DATE" DATE, 
+	"ID" VARCHAR2(400 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."TP_NUM" IS 'price_seq';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."PEOPLE" IS '인원 수';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."ADULT_NUM" IS '성인 수';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."TEEN_NUM" IS '청소년 수';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."TOTAL_PRICE" IS '총 금액';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."C_NUM" IS '사용 쿠폰';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."POINT" IS '포인트 사용금액';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."PRICE" IS '실제 청구 금액';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."CODE" IS '출력 코드';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."REG_DATE" IS '예약날자';
+   COMMENT ON COLUMN "CNEMA"."TICKETPRICE"."ID" IS '예약자 id';
+
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1689,1,1,0,8000,1341,5000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjun1121');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1724,2,1,1,14000,1342,10000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'ssin226');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1572,1,1,0,8000,0,8000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'min1994');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1575,1,1,0,8000,0,8000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'library_4');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1593,2,2,0,16000,0,16000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hyun0226');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1621,1,1,0,8000,1339,6000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'ssin226');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1625,2,2,0,16000,1347,7000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'ssin226');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1629,2,2,0,16000,0,16000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'ssin226');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1560,1,1,0,8000,0,8000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'min1994');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1563,1,1,0,8000,0,8000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'library_4');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1658,6,6,0,48000,1352,33600,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjun1121');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1667,1,0,1,6000,1339,4000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjun1121');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1670,2,2,0,16000,0,16000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjun1121');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1680,1,1,0,8000,0,8000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'zxczxc');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1685,1,1,0,8000,0,8000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjunhjun1');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1694,1,1,0,8000,1349,7200,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjun1121');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1699,1,1,0,8000,1345,2000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjun1121');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1607,2,2,0,16000,0,16000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hyun0226');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1646,3,3,0,24000,1346,15000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'hjun1121');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1547,1,1,0,8000,0,8000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'min1994');
+Insert into CNEMA.TICKETPRICE (TP_NUM,PEOPLE,ADULT_NUM,TEEN_NUM,TOTAL_PRICE,C_NUM,POINT,PRICE,CODE,REG_DATE,ID) values (1552,2,2,0,16000,0,16000,0,'a2s4d1',to_date('18/01/30','RR/MM/DD'),'min1994');
+
+
+
+  CREATE TABLE "CNEMA"."WARNING" 
+   (	"WARNING_NUM" NUMBER(8,0), 
+	"REVIEW_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(400 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."WARNING"."ID" IS '신고 누른 사람';
+
+
+Insert into CNEMA.WARNING (WARNING_NUM,REVIEW_NUM,ID) values (1723,1605,'ssin226');
+
+
+  CREATE TABLE "CNEMA"."WISH" 
+   (	"WISH_NUM" NUMBER(8,0), 
+	"MOVIE_NUM" NUMBER(8,0), 
+	"ID" VARCHAR2(4000 BYTE)
+   );
+
+   COMMENT ON COLUMN "CNEMA"."WISH"."WISH_NUM" IS 'wish_seq';
+
+
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1529,27,'min1994');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1522,26,'min1994');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1523,25,'min1994');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1584,23,'hyun0226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1585,25,'hyun0226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1586,27,'hyun0226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1587,2,'hyun0226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1635,24,'ssin226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1636,2,'ssin226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1637,21,'ssin226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1638,168,'ssin226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1639,388,'ssin226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1684,388,'gs1234');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1702,23,'hjun1121');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1703,25,'hjun1121');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1722,138,'ssin226');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1568,2,'min1994');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1569,26,'library_4');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1571,2,'library_4');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1530,389,'min1994');
+Insert into CNEMA.WISH (WISH_NUM,MOVIE_NUM,ID) values (1537,388,'min1994');
+
+
+CREATE SEQUENCE  "CNEMA"."MOVIE_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1746 CACHE 20 NOORDER  NOCYCLE ;
+
+

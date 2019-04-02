@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="coupongroupMapper">
+  	<insert id="groupInsert" parameterType="java.util.Map">
+  		insert into coupongroup values(movie_seq.nextval,#{number},#{id})
+  	</insert>
+  	
+  	<select id="groupList" resultType="coupongroupDTO" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(select distinct group_num from coupongroup) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select distinct group_num from coupongroup -->
+  	</select>
+  	<select id="gTotalCount" resultType="int">
+  		select count(distinct group_num) from coupongroup
+  	</select>
+  	
+  	<select id="groupSList" resultType="coupongroupDTO" parameterType="int">
+  		select * from coupongroup where group_num=#{group_num}
+  	</select>
+  	
+  	<select id="groupAList" resultType="coupongroupDTO" parameterType="int">
+  		select distinct group_num from coupongroup
+  	</select>
+  	
+  	<delete id="groupRemove" parameterType="int">
+  		<if test="group_num == -1">
+  			delete from coupongroup
+  		</if>
+  		<if test="group_num != -1">
+  			delete from coupongroup where group_num=#{group_num}
+  		</if>
+  	</delete>
+  	
+  <delete id="withdrawal" parameterType="string">
+  		delete from coupongroup where id=#{id}
+  </delete>
+  </mapper>

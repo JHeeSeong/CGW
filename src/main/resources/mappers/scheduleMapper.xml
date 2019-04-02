@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="scheduleMapper">
+  
+  	<select id="movieNumList" parameterType="java.util.Map" resultType="int">
+  		select DISTINCT movie_num from schedule where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} order by movie_num desc
+  	</select>
+  	<select id ="screenNumList" parameterType="java.util.Map" resultType="int">
+  		select DISTINCT screen_num from schedule where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} and movie_num=#{movie_num} order by screen_num asc
+  	</select>
+  
+   	<select id="screenList" resultType="screenDTO" parameterType="int">
+   		select * from screen where theater_num =#{theater_num}
+  	</select>
+  
+  	<resultMap type="scheduleDTO" id="scheduleTime">
+  		<id property="schedule_num" column="schedule_num"/>
+  		<result property="screen_num" column="screen_num"/>
+  		<result property="movie_num" column="movie_num"/>
+  		<result property="in_time" column="inn" />
+  		<result property="out_time" column="outt" />
+  		<result property="day" column="day"/>
+  	</resultMap>
+  	
+  	<select id="scheduleList" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and to_char(in_time,'HH24:MI')>to_char(sysdate,'HH24:MI') and screen_num=#{screen_num} and movie_num=#{movie_num} order by inn asc
+  	</select>
+  	
+  	<select id="scheduleListNext" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num} and movie_num=#{movie_num} order by inn asc
+  	</select>
+  	
+  	<select id="movieSchedule" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YYYY-MM-DD') = #{day} and to_char(in_time,'HH24:MI')>to_char(sysdate,'HH24:MI') and theater_num=#{theater_num} and movie_num=#{movie_num}  and screen_num =#{screen_num} order by inn asc
+  	</select>
+  	
+  	<select id="movieScheduleNext" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where to_char(day,'YYYY-MM-DD') = #{day} and theater_num=#{theater_num} and movie_num=#{movie_num}  and screen_num =#{screen_num} order by inn asc
+  	</select>
+  	
+  	<!-- <select id="scheduleList" resultType="scheduleDTO" parameterType="java.util.Map">
+  		select * from schedule where to_char(day,'YY-MM-DD') = to_char(#{day_num},'YY-MM-DD') and screen_num=#{screen_num} and movie_num=#{movie_num}
+  	</select> -->  
+  
+  	<select id="scheduleOne" resultMap="scheduleTime"  parameterType="int">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where schedule_num=#{schedule_num}
+  	</select>
+  
+  	<select id="screenOne" resultType="screenDTO" parameterType="int">
+  		select * from screen where screen_num=#{screen_num}
+  	</select>
+  
+  	<insert id="screenInsert" parameterType="screenDTO">
+  		insert into screen values(movie_seq.nextval,#{theater_num},#{room_num},#{floor},#{x_num},#{y_num})
+  	</insert>
+  
+  
+  
+  	<!-- heeseong -->
+  	<select id="scheduleInfo" resultMap="scheduleTime" parameterType="int">
+  		select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S where schedule_num=#{sNum}
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<insert id="scheduleInsert" parameterType="scheduleDTO">
+  		insert into schedule values(movie_seq.nextval,#{screen_num},#{movie_num},to_date(#{in_time},'HH24:MI'),to_date(#{out_time},'HH24:MI'),#{day},#{theater_num})
+  	</insert>
+  	
+  	<!-- heeseong -->
+  	<select id="sTotalCount" resultType="int" >
+  		select count(schedule_num) from schedule
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<select id="scheduleAList" resultMap="scheduleTime" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		<!-- select S.*, to_char(in_time,'HH24:MI') inn, to_char(out_time,'HH24:MI') outt from schedule S -->
+  	</select>
+  	
+  	<!-- heeseong -->
+  	<update id="scheduleRevision" parameterType="scheduleDTO">
+  		update schedule set screen_num=#{screen_num},movie_num=#{movie_num},in_time=to_date(#{in_time},'HH24:MI'),out_time=to_date(#{out_time},'HH24:MI'),day=to_date(#{day},'YYYY/mm/DD') where schedule_num=#{schedule_num}
+  	</update>
+  	
+  	<!-- heeseong -->
+  	<delete id="scheduleRemove" parameterType="int">
+  		delete schedule where schedule_num=#{schedule_num}
+  	</delete>
+  	
+  	
+  	<!-- screen -->
+  	<!-- heeseong -->
+  	<select id="totalCount" resultType="int" >
+  		select count(screen_num) from screen
+  	</select>
+  	
+  	<select id="screenAList" resultType="screenDTO" parameterType="java.util.Map">
+  		<choose>
+  			<when test="theater_num!=-1">
+  				select * from (
+				select rownum R, N.* from  		
+				(select * from screen where theater_num =#{theater_num}) N)
+				where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  				
+  			</when>
+  			<otherwise>
+  				select * from (
+				select rownum R, N.* from  		
+				(select * from screen) N)
+				where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  			</otherwise>
+  		</choose>
+  		
+  		<!-- select * from screen -->
+  	</select>
+  	<!-- heeseong -->
+  	<update id="screenRevision" parameterType="screenDTO">
+  		update screen set room_num=#{room_num},floor=#{floor},x_num=#{x_num},y_num=#{y_num} where screen_num=#{screen_num}
+  	</update>
+  	<!-- heeseong -->
+  	<delete id="screenRemove" parameterType="int">
+  		delete from screen where screen_num=#{screen_num}
+  	</delete>
+  	<!-- heeseong -->
+  	<select id="screenInfo" resultType="screenDTO" parameterType="int">
+  		select * from screen where theater_num=#{theater_num}
+  	</select>
+  	
+  </mapper>

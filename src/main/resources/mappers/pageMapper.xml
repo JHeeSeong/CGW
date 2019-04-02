@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pageMapper">
+
+	<!-- 페이지 멤버 리스트  -->
+	<select id="pageMemberProfile" parameterType="java.util.Map" resultType="memberDTO">
+		select M.id, M.fileName from member M, pagemember P where M.id=P.id and P.page_num=#{page_num}
+			and P.id like '%'||#{search}||'%'
+	</select>
+
+	<!-- 추천 페이지 -->
+	<select id="recommendPageList" resultType="pageDTO">
+		select * from page order by reg_date desc
+	</select>
+
+	<!-- 가입한 페이지 -->
+	<select id="joinPageList" parameterType="String" resultType="pageDTO">
+		select M.id, P.* from pagemember M, page P where M.id=#{id} and M.page_num=P.page_num
+	</select>
+
+	<!-- 안읽은 쪽지 count -->
+	<select id="mailCount" parameterType="String" resultType="int">
+		select count(nvl(null, 0)) from message where receive_id=#{id} and type=12
+	</select>
+
+	<!-- 발신함 -->
+	<select id="selectSendMail" parameterType="java.util.Map" resultType="messageDTO">
+		select * from (
+		select rownum R, N.* from
+		(select * from message where send_id=#{id}) N)
+		where R between #{rowNum.startRow} and #{rowNum.lastRow}
+	</select>
+	<select id="sendMailTotalCount" parameterType="String" resultType="int">
+		select count(nvl(null, 0)) from message where send_id=#{id}
+	</select>
+
+	<!-- 쪽지 수신 -->
+	<select id="selectMailOne" parameterType="int" resultType="messageDTO">
+		select * from message where message_num=#{message_num}
+	</select>
+	<update id="mailRead" parameterType="int">
+		update message set read_date=sysdate, type=11 where message_num=#{message_num}
+	</update>
+
+	<!-- 메일 받기 -->
+	<select id="mailReceive" parameterType="java.util.Map" resultType="messageDTO">
+		select * from (
+		select rownum R, N.* from
+		(select * from message where receive_id=#{id}) N)
+		where R between #{rowNum.startRow} and #{rowNum.lastRow}
+	</select>
+	<select id="mailTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(nvl(null, 0)) from message where receive_id=#{id}	
+	</select>
+
+	<!-- 메일 보내기 -->
+	<insert id="mailSend" parameterType="java.util.Map">
+		insert into message values(message_seq.nextval, #{messageDTO.send_id}, #{messageDTO.receive_id}, #{messageDTO.title}, #{messageDTO.contents}, sysdate, null, 12)
+	</insert>
+	
+	<!-- 댓글 리스트 -->
+	<select id="replyList" parameterType="int" resultType="pageContentsDTO">
+<!-- 		select * from pagecontents where ref=#{contents_num} order by contents_num asc -->
+		select M.filename, P.* from pagecontents P, member M where P.ref=#{contents_num} and P.id=M.id order by contents_num asc
+	</select>
+
+	<!--페이지글 쓰기  -->
+	<insert id="pageContentsWrite" parameterType="pageContentsDTO">
+		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,0,0,0)
+	</insert>
+	
+	<!--페이지 총 갯수세기  -->
+	<select id="contentsTotalCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from pageContents where page_num=#{page_num} and ref=0
+	</select>
+	
+	<!--페이지컨텐츠 리스트  -->
+	<select id="pageContentsList" parameterType="java.util.Map" resultType="pageContentsDTO">
+		select * from
+  		(select rownum r, N.* from
+  		(select P.contents_num, P.page_num, P.id, P.contents, P.reg_date, P.hit, P.warning, P.ref, M.filename from pageContents P, member M where P.page_num=#{page_num} and P.ref=0 and P.id=M.id order by P.contents_num desc) N)
+  		where r between #{page} and (#{page}+9)	
+	</select>
+	<!--page LIkE  -->
+	<update id="pageContentsLike" parameterType="int">
+		update pageContents set hit=hit+1 where contents_num=#{contents_num}
+	</update>
+	
+	<!--page 신고 -->
+	<update id="pageContentsWarning" parameterType="int">
+		update pageContents set warning=warning+1 where contents_num=#{contents_num}
+	</update>
+	<!-- 페이지 삭제  -->
+	<delete id="pageContentsDelete" parameterType="int">
+		delete pageContents where contents_num=#{contents_num}
+	</delete>
+	
+	<!--page 수정 -->
+	<update id="pageContentsUpdage" parameterType="pageContentsDTO">
+		update pageContents set contents=#{contents} where contents_num=#{contents_num}
+	</update>
+	
+	
+	
+	<!--댓글쓰기  -->
+	<insert id="replyWrite" parameterType="pageContentsDTO">
+		insert into pageContents values(movie_seq.nextval,#{page_num},#{id},#{contents},sysdate,null,null,0,0,#{ref},0,0)
+	</insert>	
+	
+	<delete id="memberDrop" parameterType="java.util.Map">
+		delete pagemember where page_num=#{page_num} and id=#{id}
+	</delete>
+
+	<!--  page 회원수 빼기 1 -->
+	<update id="memberDropCount" parameterType="int">
+		update page set member_count=member_count-1 where page_num=#{page_num}		
+	</update>
+
+	<select id="memberCheck" parameterType="java.util.Map" resultType="pageMemberDTO">
+		select * from pagemember where id=#{id} and page_num=#{page_num}
+	</select>
+
+	<select id="selectPageMemberList" resultType="pageMemberDTO" parameterType="int">
+		select * from pagemember where page_num=#{page_num}
+	</select>
+
+	<insert id="memberInsert" parameterType="java.util.Map">
+		insert into pagemember values(movie_seq.nextval, #{pageDTO.page_num}, #{id}, sysdate,
+		<choose>
+			<when test="pageDTO.owner_id==id"> 20 </when>
+			<otherwise> 11 </otherwise>
+		</choose>
+		)
+	</insert>
+
+	<update id="memberCount" parameterType="int">
+		update page set member_count=member_count+1 where page_num=#{page_num}
+	</update>
+	
+	<select id="selectPageMemberOne" parameterType="java.util.Map" resultType="pageMemberDTO">
+		select * from pagemember where id=#{id} and page_num=#{page_num}
+	</select>
+
+	<select id="selectPageOne" resultType="pageDTO">
+		select * from page where page_num=#{page_num}
+	</select>
+	
+	<insert id="pageInsert" parameterType="pageDTO">
+        <selectKey order="BEFORE" resultType="int" keyProperty="page_num">
+        	select movie_seq.nextval from dual
+        </selectKey>
+         insert into page values(#{page_num}, #{page_name}, #{fileName}, #{oriName}, sysdate, 1, #{owner_id})
+    </insert>
+
+</mapper>

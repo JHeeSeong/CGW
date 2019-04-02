@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="couponMapper">
+  	
+  	<select id="couponOne" resultType="couponDTO" parameterType="String">
+  		select * from coupon where name=#{name}
+  	</select>
+  
+  <!-- heeseong -->
+  	<select id="couponAList" resultType="couponDTO">
+  		select * from coupon
+  	</select>
+  	<!-- heeseong -->
+  	<select id="couponInfo" resultType="couponDTO" parameterType="int">
+  		select * from coupon where c_num=#{c_num}
+  	</select>
+  	<!-- heeseong -->
+  	<select id="totalCount" resultType="int" parameterType="java.util.Map">
+  		select count(c_num) from coupon
+  		<choose>
+	  		<when test="kind=='name'">
+	  			where name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='rate'">
+	  			where type = 10 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='price'">
+	  			where type = 11 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<otherwise>
+	  		</otherwise>
+  		</choose>
+  	</select>
+   <!-- heeseong -->
+  	<select id="couponList" resultType="couponDTO" parameterType="java.util.Map">
+  		select * from (
+		select rownum R, N.* from  		
+		(select * from coupon 
+		<choose>
+	  		<when test="kind=='name'">
+	  			where name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='rate'">
+	  			where type = 10 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<when test="kind=='price'">
+	  			where type = 11 and name like '%'||#{search}||'%'
+	  		</when>
+	  		<otherwise>
+	  		</otherwise>
+  		</choose>) N)
+		where R BETWEEN #{rowNum.startRow} and #{rowNum.lastRow}
+  		
+  		
+  		<!--
+  		select * from coupon 
+  		 <choose>
+  		<when test="kind=='name'">
+  			where name like '%'||#{search}||'%'
+  		</when>
+  		<when test="kind=='rate'">
+  			where type = 10 and name like '%'||#{search}||'%'
+  		</when>
+  		<when test="kind=='price'">
+  			where type = 11 and name like '%'||#{search}||'%'
+  		</when>
+  		<otherwise>
+  		</otherwise>
+  		</choose> -->
+  	</select>
+  	<!-- heeseong -->
+  	<insert id="couponInsert" parameterType="couponDTO">
+  	 	insert into coupon values(#{name},#{type},#{price},#{v_day},movie_seq.nextval)
+  	</insert>
+  	<!-- heeseong -->
+  	<update id="couponRevision" parameterType="couponDTO">
+  		update coupon set name=#{name}, type=#{type}, price=#{price}, v_day=${v_day} where c_num=#{c_num}
+  	</update>
+  	<!-- heeseong -->
+  	<select id="couponRevisionInfo" parameterType="java.lang.String" resultType="couponDTO">
+  		select * from coupon where name=#{name}
+  	</select>
+  </mapper>
